@@ -46,7 +46,7 @@
             Project_Subheader = new Label();
             Project_header = new Label();
             Project_icon = new PictureBox();
-            MainPanel = new Panel();
+            HomePanel = new Panel();
             Clab_ID = new Label();
             Clab_track = new Label();
             Clab_crs = new Label();
@@ -54,11 +54,32 @@
             lab_crs = new Label();
             lab_track = new Label();
             HomePanel_img = new PictureBox();
+            Personal_info_Panel = new Panel();
+            Speciality_Title = new Label();
+            Change_Speciality = new TextBox();
+            Address_Title = new Label();
+            Change_Address = new TextBox();
+            Type_Title = new Label();
+            Change_Type = new TextBox();
+            Gender_Title = new Label();
+            Change_Gender = new TextBox();
+            DOB_Title = new Label();
+            Change_DOB = new TextBox();
+            Email_Title = new Label();
+            Change_Email = new TextBox();
+            Name_Title = new Label();
+            Change_Name = new TextBox();
+            ID_Title = new Label();
+            pictureBox1 = new PictureBox();
+            Change_ID = new TextBox();
+            Personal_Details = new Label();
             SidePanel.SuspendLayout();
             RedFlag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Project_icon).BeginInit();
-            MainPanel.SuspendLayout();
+            HomePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)HomePanel_img).BeginInit();
+            Personal_info_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // SidePanel
@@ -314,20 +335,20 @@
             Project_icon.TabIndex = 4;
             Project_icon.TabStop = false;
             // 
-            // MainPanel
+            // HomePanel
             // 
-            MainPanel.Controls.Add(Clab_ID);
-            MainPanel.Controls.Add(Clab_track);
-            MainPanel.Controls.Add(Clab_crs);
-            MainPanel.Controls.Add(lab_ID);
-            MainPanel.Controls.Add(lab_crs);
-            MainPanel.Controls.Add(lab_track);
-            MainPanel.Controls.Add(HomePanel_img);
-            MainPanel.Location = new Point(240, 100);
-            MainPanel.Margin = new Padding(4, 3, 4, 3);
-            MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(1154, 688);
-            MainPanel.TabIndex = 12;
+            HomePanel.Controls.Add(Clab_ID);
+            HomePanel.Controls.Add(Clab_track);
+            HomePanel.Controls.Add(Clab_crs);
+            HomePanel.Controls.Add(lab_ID);
+            HomePanel.Controls.Add(lab_crs);
+            HomePanel.Controls.Add(lab_track);
+            HomePanel.Controls.Add(HomePanel_img);
+            HomePanel.Location = new Point(240, 100);
+            HomePanel.Margin = new Padding(4, 3, 4, 3);
+            HomePanel.Name = "HomePanel";
+            HomePanel.Size = new Size(1154, 688);
+            HomePanel.TabIndex = 12;
             // 
             // Clab_ID
             // 
@@ -407,12 +428,226 @@
             HomePanel_img.TabIndex = 27;
             HomePanel_img.TabStop = false;
             // 
+            // Personal_info_Panel
+            // 
+            Personal_info_Panel.Controls.Add(Speciality_Title);
+            Personal_info_Panel.Controls.Add(Change_Speciality);
+            Personal_info_Panel.Controls.Add(Address_Title);
+            Personal_info_Panel.Controls.Add(Change_Address);
+            Personal_info_Panel.Controls.Add(Type_Title);
+            Personal_info_Panel.Controls.Add(Change_Type);
+            Personal_info_Panel.Controls.Add(Gender_Title);
+            Personal_info_Panel.Controls.Add(Change_Gender);
+            Personal_info_Panel.Controls.Add(DOB_Title);
+            Personal_info_Panel.Controls.Add(Change_DOB);
+            Personal_info_Panel.Controls.Add(Email_Title);
+            Personal_info_Panel.Controls.Add(Change_Email);
+            Personal_info_Panel.Controls.Add(Name_Title);
+            Personal_info_Panel.Controls.Add(Change_Name);
+            Personal_info_Panel.Controls.Add(ID_Title);
+            Personal_info_Panel.Controls.Add(pictureBox1);
+            Personal_info_Panel.Controls.Add(Change_ID);
+            Personal_info_Panel.Controls.Add(Personal_Details);
+            Personal_info_Panel.Location = new Point(239, 89);
+            Personal_info_Panel.Name = "Personal_info_Panel";
+            Personal_info_Panel.Size = new Size(1166, 699);
+            Personal_info_Panel.TabIndex = 13;
+            // 
+            // Speciality_Title
+            // 
+            Speciality_Title.AutoSize = true;
+            Speciality_Title.Font = new Font("Century Gothic", 19F);
+            Speciality_Title.Location = new Point(455, 589);
+            Speciality_Title.Name = "Speciality_Title";
+            Speciality_Title.Size = new Size(138, 32);
+            Speciality_Title.TabIndex = 17;
+            Speciality_Title.Text = "Speciality";
+            // 
+            // Change_Speciality
+            // 
+            Change_Speciality.BackColor = SystemColors.Control;
+            Change_Speciality.Enabled = false;
+            Change_Speciality.Font = new Font("Century Gothic", 14F);
+            Change_Speciality.ForeColor = SystemColors.Desktop;
+            Change_Speciality.Location = new Point(457, 627);
+            Change_Speciality.Name = "Change_Speciality";
+            Change_Speciality.Size = new Size(273, 30);
+            Change_Speciality.TabIndex = 16;
+            // 
+            // Address_Title
+            // 
+            Address_Title.AutoSize = true;
+            Address_Title.Font = new Font("Century Gothic", 19F);
+            Address_Title.Location = new Point(45, 589);
+            Address_Title.Name = "Address_Title";
+            Address_Title.Size = new Size(114, 32);
+            Address_Title.TabIndex = 15;
+            Address_Title.Text = "Address";
+            // 
+            // Change_Address
+            // 
+            Change_Address.BackColor = SystemColors.Control;
+            Change_Address.Enabled = false;
+            Change_Address.Font = new Font("Century Gothic", 14F);
+            Change_Address.ForeColor = SystemColors.Desktop;
+            Change_Address.Location = new Point(48, 627);
+            Change_Address.Name = "Change_Address";
+            Change_Address.Size = new Size(273, 30);
+            Change_Address.TabIndex = 14;
+            // 
+            // Type_Title
+            // 
+            Type_Title.AutoSize = true;
+            Type_Title.Font = new Font("Century Gothic", 19F);
+            Type_Title.Location = new Point(863, 481);
+            Type_Title.Name = "Type_Title";
+            Type_Title.Size = new Size(192, 32);
+            Type_Title.TabIndex = 13;
+            Type_Title.Text = "Account Type";
+            // 
+            // Change_Type
+            // 
+            Change_Type.BackColor = SystemColors.Control;
+            Change_Type.Enabled = false;
+            Change_Type.Font = new Font("Century Gothic", 14F);
+            Change_Type.ForeColor = SystemColors.Desktop;
+            Change_Type.Location = new Point(868, 519);
+            Change_Type.Name = "Change_Type";
+            Change_Type.Size = new Size(273, 30);
+            Change_Type.TabIndex = 12;
+            // 
+            // Gender_Title
+            // 
+            Gender_Title.AutoSize = true;
+            Gender_Title.Font = new Font("Century Gothic", 19F);
+            Gender_Title.Location = new Point(457, 481);
+            Gender_Title.Name = "Gender_Title";
+            Gender_Title.Size = new Size(113, 32);
+            Gender_Title.TabIndex = 11;
+            Gender_Title.Text = "Gender";
+            // 
+            // Change_Gender
+            // 
+            Change_Gender.BackColor = SystemColors.Control;
+            Change_Gender.Enabled = false;
+            Change_Gender.Font = new Font("Century Gothic", 14F);
+            Change_Gender.ForeColor = SystemColors.Desktop;
+            Change_Gender.Location = new Point(459, 519);
+            Change_Gender.Name = "Change_Gender";
+            Change_Gender.Size = new Size(273, 30);
+            Change_Gender.TabIndex = 10;
+            // 
+            // DOB_Title
+            // 
+            DOB_Title.AutoSize = true;
+            DOB_Title.Font = new Font("Century Gothic", 19F);
+            DOB_Title.Location = new Point(47, 481);
+            DOB_Title.Name = "DOB_Title";
+            DOB_Title.Size = new Size(174, 32);
+            DOB_Title.TabIndex = 9;
+            DOB_Title.Text = "Date Of Birth";
+            // 
+            // Change_DOB
+            // 
+            Change_DOB.BackColor = SystemColors.Control;
+            Change_DOB.Enabled = false;
+            Change_DOB.Font = new Font("Century Gothic", 14F);
+            Change_DOB.ForeColor = SystemColors.Desktop;
+            Change_DOB.Location = new Point(50, 519);
+            Change_DOB.Name = "Change_DOB";
+            Change_DOB.Size = new Size(273, 30);
+            Change_DOB.TabIndex = 8;
+            // 
+            // Email_Title
+            // 
+            Email_Title.AutoSize = true;
+            Email_Title.Font = new Font("Century Gothic", 19F);
+            Email_Title.Location = new Point(863, 371);
+            Email_Title.Name = "Email_Title";
+            Email_Title.Size = new Size(82, 32);
+            Email_Title.TabIndex = 7;
+            Email_Title.Text = "Email";
+            // 
+            // Change_Email
+            // 
+            Change_Email.BackColor = SystemColors.Control;
+            Change_Email.Enabled = false;
+            Change_Email.Font = new Font("Century Gothic", 14F);
+            Change_Email.ForeColor = SystemColors.Desktop;
+            Change_Email.Location = new Point(868, 409);
+            Change_Email.Name = "Change_Email";
+            Change_Email.Size = new Size(273, 30);
+            Change_Email.TabIndex = 6;
+            // 
+            // Name_Title
+            // 
+            Name_Title.AutoSize = true;
+            Name_Title.Font = new Font("Century Gothic", 19F);
+            Name_Title.Location = new Point(457, 371);
+            Name_Title.Name = "Name_Title";
+            Name_Title.Size = new Size(92, 32);
+            Name_Title.TabIndex = 5;
+            Name_Title.Text = "Name";
+            // 
+            // Change_Name
+            // 
+            Change_Name.BackColor = SystemColors.Control;
+            Change_Name.Enabled = false;
+            Change_Name.Font = new Font("Century Gothic", 14F);
+            Change_Name.ForeColor = SystemColors.Desktop;
+            Change_Name.Location = new Point(459, 409);
+            Change_Name.Name = "Change_Name";
+            Change_Name.Size = new Size(273, 30);
+            Change_Name.TabIndex = 4;
+            // 
+            // ID_Title
+            // 
+            ID_Title.AutoSize = true;
+            ID_Title.Font = new Font("Century Gothic", 19F);
+            ID_Title.Location = new Point(47, 371);
+            ID_Title.Name = "ID_Title";
+            ID_Title.Size = new Size(148, 32);
+            ID_Title.TabIndex = 3;
+            ID_Title.Text = "ID Number";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(505, 28);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(270, 257);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // Change_ID
+            // 
+            Change_ID.BackColor = SystemColors.Control;
+            Change_ID.Enabled = false;
+            Change_ID.Font = new Font("Century Gothic", 14F);
+            Change_ID.ForeColor = SystemColors.Desktop;
+            Change_ID.Location = new Point(50, 409);
+            Change_ID.Name = "Change_ID";
+            Change_ID.Size = new Size(273, 30);
+            Change_ID.TabIndex = 1;
+            // 
+            // Personal_Details
+            // 
+            Personal_Details.AutoSize = true;
+            Personal_Details.Font = new Font("Century Gothic", 28F);
+            Personal_Details.Location = new Point(485, 302);
+            Personal_Details.Name = "Personal_Details";
+            Personal_Details.Size = new Size(313, 45);
+            Personal_Details.TabIndex = 0;
+            Personal_Details.Text = "Personal Details";
+            // 
             // StudentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1445, 800);
             Controls.Add(RedFlag);
+            Controls.Add(Personal_info_Panel);
             Controls.Add(but_setting);
             Controls.Add(but_Notification);
             Controls.Add(but_Close);
@@ -421,7 +656,7 @@
             Controls.Add(but_FB);
             Controls.Add(RedBar);
             Controls.Add(SidePanel);
-            Controls.Add(MainPanel);
+            Controls.Add(HomePanel);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
@@ -432,9 +667,12 @@
             RedFlag.ResumeLayout(false);
             RedFlag.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Project_icon).EndInit();
-            MainPanel.ResumeLayout(false);
-            MainPanel.PerformLayout();
+            HomePanel.ResumeLayout(false);
+            HomePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)HomePanel_img).EndInit();
+            Personal_info_Panel.ResumeLayout(false);
+            Personal_info_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -456,7 +694,7 @@
         private System.Windows.Forms.Label Project_header;
         private System.Windows.Forms.PictureBox Project_icon;
         private System.Windows.Forms.Panel Highlighter;
-        private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Panel HomePanel;
         private System.Windows.Forms.Label Clab_ID;
         private System.Windows.Forms.Label Clab_track;
         private System.Windows.Forms.Label Clab_crs;
@@ -465,6 +703,25 @@
         private System.Windows.Forms.Label lab_track;
         private System.Windows.Forms.PictureBox HomePanel_img;
         private Button but_Logout;
+        private Panel Personal_info_Panel;
+        private Label Personal_Details;
+        private TextBox Change_ID;
+        private PictureBox pictureBox1;
+        private Label ID_Title;
+        private Label Email_Title;
+        private TextBox Change_Email;
+        private Label Name_Title;
+        private TextBox Change_Name;
+        private Label Speciality_Title;
+        private TextBox Change_Speciality;
+        private Label Address_Title;
+        private TextBox Change_Address;
+        private Label Type_Title;
+        private TextBox Change_Type;
+        private Label Gender_Title;
+        private TextBox Change_Gender;
+        private Label DOB_Title;
+        private TextBox Change_DOB;
     }
 }
 
