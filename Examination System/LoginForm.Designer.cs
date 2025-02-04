@@ -1,4 +1,6 @@
-﻿namespace Examination_System
+﻿
+
+namespace Examination_System
 {
     partial class LoginForm
     {
@@ -36,7 +38,8 @@
             textBox_email = new TextBox();
             textBox_password = new TextBox();
             button_login = new Button();
-            button2 = new Button();
+            Close_But = new Button();
+            Mini_but = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -66,12 +69,12 @@
             // 
             lab_email.AutoSize = true;
             lab_email.BackColor = Color.White;
-            lab_email.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lab_email.ForeColor = Color.FromArgb(242, 127, 70);
+            lab_email.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lab_email.ForeColor = Color.FromArgb(178, 8, 55);
             lab_email.Location = new Point(34, 316);
             lab_email.Margin = new Padding(4, 0, 4, 0);
             lab_email.Name = "lab_email";
-            lab_email.Size = new Size(66, 22);
+            lab_email.Size = new Size(71, 23);
             lab_email.TabIndex = 2;
             lab_email.Text = "Email :";
             // 
@@ -79,12 +82,12 @@
             // 
             lab_pass.AutoSize = true;
             lab_pass.BackColor = Color.White;
-            lab_pass.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lab_pass.ForeColor = Color.FromArgb(242, 127, 70);
+            lab_pass.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lab_pass.ForeColor = Color.FromArgb(178, 8, 55);
             lab_pass.Location = new Point(35, 392);
             lab_pass.Margin = new Padding(4, 0, 4, 0);
             lab_pass.Name = "lab_pass";
-            lab_pass.Size = new Size(100, 22);
+            lab_pass.Size = new Size(101, 23);
             lab_pass.TabIndex = 2;
             lab_pass.Text = "Password:";
             // 
@@ -109,7 +112,7 @@
             // 
             // button_login
             // 
-            button_login.BackColor = Color.FromArgb(242, 127, 70);
+            button_login.BackColor = Color.FromArgb(178, 8, 55);
             button_login.FlatStyle = FlatStyle.Flat;
             button_login.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_login.ForeColor = Color.White;
@@ -122,21 +125,37 @@
             button_login.UseVisualStyleBackColor = false;
             button_login.Click += button_login_Click;
             // 
-            // button2
+            // Close_But
             // 
-            button2.BackColor = Color.White;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.Black;
-            button2.Location = new Point(434, 0);
-            button2.Margin = new Padding(4, 3, 4, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(27, 39);
-            button2.TabIndex = 6;
-            button2.Text = "X";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            Close_But.BackColor = Color.White;
+            Close_But.FlatAppearance.BorderSize = 0;
+            Close_But.FlatStyle = FlatStyle.Flat;
+            Close_But.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Close_But.ForeColor = Color.Black;
+            Close_But.Image = (Image)resources.GetObject("Close_But.Image");
+            Close_But.Location = new Point(418, 12);
+            Close_But.Margin = new Padding(4, 3, 4, 3);
+            Close_But.Name = "Close_But";
+            Close_But.Size = new Size(30, 33);
+            Close_But.TabIndex = 6;
+            Close_But.UseVisualStyleBackColor = false;
+            Close_But.Click += Close_But_Click;
+            // 
+            // Mini_but
+            // 
+            Mini_but.BackColor = Color.White;
+            Mini_but.FlatAppearance.BorderSize = 0;
+            Mini_but.FlatStyle = FlatStyle.Flat;
+            Mini_but.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Mini_but.ForeColor = Color.Black;
+            Mini_but.Image = (Image)resources.GetObject("Mini_but.Image");
+            Mini_but.Location = new Point(381, 13);
+            Mini_but.Margin = new Padding(4, 3, 4, 3);
+            Mini_but.Name = "Mini_but";
+            Mini_but.Size = new Size(30, 33);
+            Mini_but.TabIndex = 7;
+            Mini_but.UseVisualStyleBackColor = false;
+            Mini_but.Click += Mini_but_Click;
             // 
             // LoginForm
             // 
@@ -144,7 +163,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(461, 635);
-            Controls.Add(button2);
+            Controls.Add(Mini_but);
+            Controls.Add(Close_But);
             Controls.Add(button_login);
             Controls.Add(textBox_email);
             Controls.Add(textBox_password);
@@ -172,6 +192,7 @@
         private System.Windows.Forms.TextBox textBox_email;
         private System.Windows.Forms.TextBox textBox_password;
         private System.Windows.Forms.Button button_login;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Close_But;
+        private Button Mini_but;
     }
 }

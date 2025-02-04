@@ -195,10 +195,11 @@
             but_instagram.Location = new Point(1077, 32);
             but_instagram.Margin = new Padding(4, 3, 4, 3);
             but_instagram.Name = "but_instagram";
-            but_instagram.Size = new Size(42, 39);
+            but_instagram.Size = new Size(35, 39);
             but_instagram.TabIndex = 6;
             but_instagram.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_instagram.UseVisualStyleBackColor = true;
+            but_instagram.Click += but_instagram_Click;
             // 
             // but_twitter
             // 
@@ -211,10 +212,11 @@
             but_twitter.Location = new Point(1028, 32);
             but_twitter.Margin = new Padding(4, 3, 4, 3);
             but_twitter.Name = "but_twitter";
-            but_twitter.Size = new Size(42, 39);
+            but_twitter.Size = new Size(35, 39);
             but_twitter.TabIndex = 7;
             but_twitter.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_twitter.UseVisualStyleBackColor = true;
+            but_twitter.Click += but_twitter_Click;
             // 
             // but_FB
             // 
@@ -227,10 +229,11 @@
             but_FB.Location = new Point(979, 32);
             but_FB.Margin = new Padding(4, 3, 4, 3);
             but_FB.Name = "but_FB";
-            but_FB.Size = new Size(42, 39);
+            but_FB.Size = new Size(35, 39);
             but_FB.TabIndex = 8;
             but_FB.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_FB.UseVisualStyleBackColor = true;
+            but_FB.Click += but_FB_Click;
             // 
             // but_setting
             // 
@@ -323,7 +326,7 @@
             MainPanel.Location = new Point(240, 100);
             MainPanel.Margin = new Padding(4, 3, 4, 3);
             MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(1154, 699);
+            MainPanel.Size = new Size(1154, 688);
             MainPanel.TabIndex = 12;
             // 
             // Clab_ID
