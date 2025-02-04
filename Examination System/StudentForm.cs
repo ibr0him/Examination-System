@@ -38,6 +38,18 @@ namespace Examination_System
             Where S.Track_ID = T.ID AND S.ID = {Student[0]}", out temp);
             Clab_track.Text = temp[0];
 
+
+            Personal_info_Panel.Visible = false;
+
+            Change_ID.Text = " "+Student[0];
+            Change_Name.Text = " " + Student[1];
+            Change_Email.Text = " " + Student[3];
+            Change_DOB.Text = " " + Student[4];
+            Change_Gender.Text = " " + Student[5];
+            Change_Type.Text = " " + Student[6];
+            Change_Address.Text = " " + Student[7];
+            Change_Speciality.Text = " " + Student[8];
+
         }
 
         private void but_Close_Click(object sender, EventArgs e)
@@ -49,7 +61,9 @@ namespace Examination_System
         {
             Highlighter.Height = but_Home.Height;
             Highlighter.Top = but_Home.Top;
-           
+            Personal_info_Panel.Visible=false;
+            HomePanel.Visible = true;
+
         }
 
         private void but_Pinfo_Click(object sender, EventArgs e)
@@ -57,8 +71,9 @@ namespace Examination_System
             StudentPersonalInfo info_sub = new StudentPersonalInfo();
             Highlighter.Height = but_Pinfo.Height;
             Highlighter.Top = but_Pinfo.Top;
-            this.Hide();
-            info_sub.Show();
+            HomePanel.Visible = false;
+            Personal_info_Panel.Visible = true;
+
         }
 
         private void but_Exams_Click(object sender, EventArgs e)
@@ -104,5 +119,6 @@ namespace Examination_System
                 UseShellExecute = true
             });
         }
+
     }
 }

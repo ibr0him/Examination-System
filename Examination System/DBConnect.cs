@@ -15,7 +15,7 @@ public static class DBConnect
     private static SqlConnection con;
     
     //Replace this ConnectionString with Yours 
-    private static string connectionString = "Data Source=YAHYA\\SQLEXPRESS;Initial Catalog=Examination System;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+    private static string connectionString = "Data Source=LAPTOP-26BRTGHE\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
     // Used only For Select Query or Procedures that Returns Select Statement ,Name Must Contain "Select" Word
     // If Successful 
