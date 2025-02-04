@@ -36,13 +36,14 @@ namespace Examination_System
             string[] Student;
             string[] Teachers;
 
-            // Will Return all user attributes union Student attributes "ID No Dublication"
+            
             int flag = SelectQ(@$"Select * From Users
                             Where Email ='{email}' AND Password = '{pass}'", out Student);
             if (flag == 1)
             {
                 if (Student[6] == "Student")
                 {
+                    // Will Return all user attributes union Student attributes "ID No Dublication"
                     SelectQ(@$"Select U.*,S.Specialist From Users U, Student S 
                             Where U.Email ='{email}' AND U.Password = '{pass}'
                             And U.ID=S.ID", out Student);
@@ -53,10 +54,14 @@ namespace Examination_System
                 }
                 else
                 {
+                    // Will Return all user attributes union Instructor attributes "ID No Dublication"
                     SelectQ(@$"Select U.*,I.Salary From Users U, Ins I 
                         Where U.Email ='{email}' AND U.Password = '{pass}'
                         And U.ID=I.ID", out Teachers);
-                    // Naviagte to Instructor Page
+
+                    InstructorForm teach = new InstructorForm(Teachers);
+                    this.Hide();
+                    teach.Show();
                 }
 
             }

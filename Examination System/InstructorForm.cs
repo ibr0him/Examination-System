@@ -13,10 +13,10 @@ using System.Diagnostics;
 
 namespace Examination_System
 {
-    public partial class StudentForm : Form
+    public partial class InstructorForm : Form
     {
 
-        public StudentForm(string[] Student)
+        public InstructorForm(string[] Teacher)
         {
             InitializeComponent();
 
@@ -26,29 +26,32 @@ namespace Examination_System
             Highlighter.Height = but_Home.Height;
             Highlighter.Top = but_Home.Top;
 
-            SelectQ(@$"Select Count(T.Crs_ID) 
-            From Student S join Track_Courses T 
-            on S.Track_ID = T.Track_ID 
-            Group By S.ID Having ID ={Student[0]}", out temp);
+            SelectQ(@$"Select COUNT(T.Crs_ID)
+                        From Ins I join Teach T
+                        on T.Ins_ID = I.ID
+                        Group By I.ID
+                        Having I.ID = {Teacher[0]}", out temp);
 
-            Clab_ID.Text = Student[0];
+            Clab_ID.Text = Teacher[0];
             Clab_crs.Text = temp[0];
 
-            SelectQ(@$"Select T.Name From Student S , Track T 
-            Where S.Track_ID = T.ID AND S.ID = {Student[0]}", out temp);
+            SelectQ(@$"Select T.Name
+                        From Ins I join Track T
+                        on I.Track_ID=T.ID
+                        Where T.ID ={Teacher[0]}", out temp);
             Clab_track.Text = temp[0];
 
 
             Personal_info_Panel.Visible = false;
 
-            Change_ID.Text = " " + Student[0];
-            Change_Name.Text = " " + Student[1];
-            Change_Email.Text = " " + Student[3];
-            Change_DOB.Text = " " + Student[4];
-            Change_Gender.Text = " " + Student[5];
-            Change_Type.Text = " " + Student[6];
-            Change_Address.Text = " " + Student[7];
-            Change_Speciality.Text = " " + Student[8];
+            Change_ID.Text = " "+ Teacher[0];
+            Change_Name.Text = " " + Teacher[1];
+            Change_Email.Text = " " + Teacher[3];
+            Change_DOB.Text = " " + Teacher[4];
+            Change_Gender.Text = " " + Teacher[5];
+            Change_Type.Text = " " + Teacher[6];
+            Change_Address.Text = " " + Teacher[7];
+            Change_Speciality.Text = " " + Teacher[8];
 
         }
 
@@ -61,13 +64,14 @@ namespace Examination_System
         {
             Highlighter.Height = but_Home.Height;
             Highlighter.Top = but_Home.Top;
-            Personal_info_Panel.Visible = false;
+            Personal_info_Panel.Visible=false;
             HomePanel.Visible = true;
 
         }
 
         private void but_Pinfo_Click(object sender, EventArgs e)
         {
+            
             Highlighter.Height = but_Pinfo.Height;
             Highlighter.Top = but_Pinfo.Top;
             HomePanel.Visible = false;
@@ -77,9 +81,8 @@ namespace Examination_System
 
         private void but_Exams_Click(object sender, EventArgs e)
         {
-
-            Highlighter.Height = but_Exams.Height;
-            Highlighter.Top = but_Exams.Top;
+            Highlighter.Height = but_GenExams.Height;
+            Highlighter.Top = but_GenExams.Top;
         }
 
         private void but_Logout_Click(object sender, EventArgs e)
@@ -117,6 +120,5 @@ namespace Examination_System
             });
         }
 
-      
     }
 }

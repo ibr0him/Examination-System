@@ -1,6 +1,6 @@
 ﻿namespace Examination_System
 {
-    partial class StudentForm
+    partial class InstructorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstructorForm));
             SidePanel = new Panel();
             but_Logout = new Button();
             Highlighter = new Panel();
-            but_Exams = new Button();
+            but_GenExams = new Button();
             but_Pinfo = new Button();
             but_Home = new Button();
             RedBar = new Panel();
@@ -55,7 +55,8 @@
             lab_track = new Label();
             HomePanel_img = new PictureBox();
             Personal_info_Panel = new Panel();
-            Speciality_Title = new Label();
+            Personal_Details = new Label();
+            Salary_Title = new Label();
             Change_Speciality = new TextBox();
             Address_Title = new Label();
             Change_Address = new TextBox();
@@ -72,7 +73,7 @@
             ID_Title = new Label();
             pictureBox1 = new PictureBox();
             Change_ID = new TextBox();
-            Personal_Details = new Label();
+            button1 = new Button();
             SidePanel.SuspendLayout();
             RedFlag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Project_icon).BeginInit();
@@ -85,16 +86,17 @@
             // SidePanel
             // 
             SidePanel.BackColor = Color.FromArgb(41, 39, 40);
+            SidePanel.Controls.Add(button1);
             SidePanel.Controls.Add(but_Logout);
             SidePanel.Controls.Add(Highlighter);
-            SidePanel.Controls.Add(but_Exams);
+            SidePanel.Controls.Add(but_GenExams);
             SidePanel.Controls.Add(but_Pinfo);
             SidePanel.Controls.Add(but_Home);
             SidePanel.Dock = DockStyle.Left;
             SidePanel.Location = new Point(0, 0);
             SidePanel.Margin = new Padding(4, 3, 4, 3);
             SidePanel.Name = "SidePanel";
-            SidePanel.Size = new Size(232, 800);
+            SidePanel.Size = new Size(250, 800);
             SidePanel.TabIndex = 0;
             // 
             // but_Logout
@@ -124,23 +126,23 @@
             Highlighter.Size = new Size(14, 70);
             Highlighter.TabIndex = 12;
             // 
-            // but_Exams
+            // but_GenExams
             // 
-            but_Exams.FlatAppearance.BorderSize = 0;
-            but_Exams.FlatStyle = FlatStyle.Flat;
-            but_Exams.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            but_Exams.ForeColor = Color.White;
-            but_Exams.Image = (Image)resources.GetObject("but_Exams.Image");
-            but_Exams.ImageAlign = ContentAlignment.MiddleLeft;
-            but_Exams.Location = new Point(19, 237);
-            but_Exams.Margin = new Padding(4, 3, 4, 3);
-            but_Exams.Name = "but_Exams";
-            but_Exams.Size = new Size(190, 55);
-            but_Exams.TabIndex = 2;
-            but_Exams.Text = "  Exams";
-            but_Exams.TextImageRelation = TextImageRelation.ImageBeforeText;
-            but_Exams.UseVisualStyleBackColor = true;
-            but_Exams.Click += but_Exams_Click;
+            but_GenExams.FlatAppearance.BorderSize = 0;
+            but_GenExams.FlatStyle = FlatStyle.Flat;
+            but_GenExams.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            but_GenExams.ForeColor = Color.White;
+            but_GenExams.Image = (Image)resources.GetObject("but_GenExams.Image");
+            but_GenExams.ImageAlign = ContentAlignment.MiddleLeft;
+            but_GenExams.Location = new Point(19, 237);
+            but_GenExams.Margin = new Padding(4, 3, 4, 3);
+            but_GenExams.Name = "but_GenExams";
+            but_GenExams.Size = new Size(236, 55);
+            but_GenExams.TabIndex = 2;
+            but_GenExams.Text = " Generate Exams";
+            but_GenExams.TextImageRelation = TextImageRelation.ImageBeforeText;
+            but_GenExams.UseVisualStyleBackColor = true;
+            but_GenExams.Click += but_Exams_Click;
             // 
             // but_Pinfo
             // 
@@ -155,7 +157,7 @@
             but_Pinfo.Name = "but_Pinfo";
             but_Pinfo.Size = new Size(213, 55);
             but_Pinfo.TabIndex = 2;
-            but_Pinfo.Text = "  Personal Info";
+            but_Pinfo.Text = " Personal Info";
             but_Pinfo.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_Pinfo.UseVisualStyleBackColor = true;
             but_Pinfo.Click += but_Pinfo_Click;
@@ -173,7 +175,7 @@
             but_Home.Name = "but_Home";
             but_Home.Size = new Size(190, 52);
             but_Home.TabIndex = 2;
-            but_Home.Text = "  Home";
+            but_Home.Text = " Home";
             but_Home.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_Home.UseVisualStyleBackColor = true;
             but_Home.Click += but_Home_Click;
@@ -182,10 +184,10 @@
             // 
             RedBar.BackColor = Color.FromArgb(178, 8, 55);
             RedBar.Dock = DockStyle.Top;
-            RedBar.Location = new Point(232, 0);
+            RedBar.Location = new Point(250, 0);
             RedBar.Margin = new Padding(4, 3, 4, 3);
             RedBar.Name = "RedBar";
-            RedBar.Size = new Size(1213, 24);
+            RedBar.Size = new Size(1195, 24);
             RedBar.TabIndex = 1;
             // 
             // but_Close
@@ -344,17 +346,17 @@
             HomePanel.Controls.Add(lab_crs);
             HomePanel.Controls.Add(lab_track);
             HomePanel.Controls.Add(HomePanel_img);
-            HomePanel.Location = new Point(240, 100);
+            HomePanel.Location = new Point(254, 100);
             HomePanel.Margin = new Padding(4, 3, 4, 3);
             HomePanel.Name = "HomePanel";
-            HomePanel.Size = new Size(1154, 688);
+            HomePanel.Size = new Size(1140, 688);
             HomePanel.TabIndex = 12;
             // 
             // Clab_ID
             // 
             Clab_ID.AutoSize = true;
             Clab_ID.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Clab_ID.Location = new Point(208, 622);
+            Clab_ID.Location = new Point(163, 616);
             Clab_ID.Margin = new Padding(4, 0, 4, 0);
             Clab_ID.Name = "Clab_ID";
             Clab_ID.Size = new Size(30, 33);
@@ -365,7 +367,7 @@
             // 
             Clab_track.AutoSize = true;
             Clab_track.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Clab_track.Location = new Point(526, 622);
+            Clab_track.Location = new Point(538, 616);
             Clab_track.Margin = new Padding(4, 0, 4, 0);
             Clab_track.Name = "Clab_track";
             Clab_track.Size = new Size(30, 33);
@@ -376,7 +378,7 @@
             // 
             Clab_crs.AutoSize = true;
             Clab_crs.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Clab_crs.Location = new Point(1029, 623);
+            Clab_crs.Location = new Point(1064, 617);
             Clab_crs.Margin = new Padding(4, 0, 4, 0);
             Clab_crs.Name = "Clab_crs";
             Clab_crs.Size = new Size(30, 33);
@@ -387,7 +389,7 @@
             // 
             lab_ID.AutoSize = true;
             lab_ID.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lab_ID.Location = new Point(154, 621);
+            lab_ID.Location = new Point(109, 615);
             lab_ID.Margin = new Padding(4, 0, 4, 0);
             lab_ID.Name = "lab_ID";
             lab_ID.Size = new Size(55, 33);
@@ -398,39 +400,40 @@
             // 
             lab_crs.AutoSize = true;
             lab_crs.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lab_crs.Location = new Point(745, 621);
+            lab_crs.Location = new Point(644, 616);
             lab_crs.Margin = new Padding(4, 0, 4, 0);
             lab_crs.Name = "lab_crs";
-            lab_crs.Size = new Size(289, 33);
+            lab_crs.Size = new Size(420, 33);
             lab_crs.TabIndex = 25;
-            lab_crs.Text = "Number Of Cources :";
+            lab_crs.Text = "Number Of  Teached Cources :";
             // 
             // lab_track
             // 
             lab_track.AutoSize = true;
             lab_track.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lab_track.ImageAlign = ContentAlignment.MiddleLeft;
-            lab_track.Location = new Point(430, 620);
+            lab_track.Location = new Point(284, 616);
             lab_track.Margin = new Padding(4, 0, 4, 0);
             lab_track.Name = "lab_track";
-            lab_track.Size = new Size(97, 33);
+            lab_track.Size = new Size(258, 33);
             lab_track.TabIndex = 26;
-            lab_track.Text = "Track :";
+            lab_track.Text = "Teaches For Track :";
             // 
             // HomePanel_img
             // 
             HomePanel_img.Image = (Image)resources.GetObject("HomePanel_img.Image");
-            HomePanel_img.Location = new Point(157, 3);
+            HomePanel_img.Location = new Point(197, 3);
             HomePanel_img.Margin = new Padding(4, 3, 4, 3);
             HomePanel_img.Name = "HomePanel_img";
-            HomePanel_img.Size = new Size(906, 590);
+            HomePanel_img.Size = new Size(874, 548);
             HomePanel_img.SizeMode = PictureBoxSizeMode.Zoom;
             HomePanel_img.TabIndex = 27;
             HomePanel_img.TabStop = false;
             // 
             // Personal_info_Panel
             // 
-            Personal_info_Panel.Controls.Add(Speciality_Title);
+            Personal_info_Panel.Controls.Add(Personal_Details);
+            Personal_info_Panel.Controls.Add(Salary_Title);
             Personal_info_Panel.Controls.Add(Change_Speciality);
             Personal_info_Panel.Controls.Add(Address_Title);
             Personal_info_Panel.Controls.Add(Change_Address);
@@ -447,21 +450,30 @@
             Personal_info_Panel.Controls.Add(ID_Title);
             Personal_info_Panel.Controls.Add(pictureBox1);
             Personal_info_Panel.Controls.Add(Change_ID);
-            Personal_info_Panel.Controls.Add(Personal_Details);
-            Personal_info_Panel.Location = new Point(239, 89);
+            Personal_info_Panel.Location = new Point(250, 80);
             Personal_info_Panel.Name = "Personal_info_Panel";
-            Personal_info_Panel.Size = new Size(1166, 699);
+            Personal_info_Panel.Size = new Size(1155, 708);
             Personal_info_Panel.TabIndex = 13;
             // 
-            // Speciality_Title
+            // Personal_Details
             // 
-            Speciality_Title.AutoSize = true;
-            Speciality_Title.Font = new Font("Century Gothic", 19F);
-            Speciality_Title.Location = new Point(455, 589);
-            Speciality_Title.Name = "Speciality_Title";
-            Speciality_Title.Size = new Size(138, 32);
-            Speciality_Title.TabIndex = 17;
-            Speciality_Title.Text = "Speciality";
+            Personal_Details.AutoSize = true;
+            Personal_Details.Font = new Font("Century Gothic", 24F);
+            Personal_Details.Location = new Point(428, 312);
+            Personal_Details.Name = "Personal_Details";
+            Personal_Details.Size = new Size(396, 39);
+            Personal_Details.TabIndex = 0;
+            Personal_Details.Text = "Teacher Personal Details";
+            // 
+            // Salary_Title
+            // 
+            Salary_Title.AutoSize = true;
+            Salary_Title.Font = new Font("Century Gothic", 19F);
+            Salary_Title.Location = new Point(454, 611);
+            Salary_Title.Name = "Salary_Title";
+            Salary_Title.Size = new Size(92, 32);
+            Salary_Title.TabIndex = 17;
+            Salary_Title.Text = "Salary";
             // 
             // Change_Speciality
             // 
@@ -469,7 +481,7 @@
             Change_Speciality.Enabled = false;
             Change_Speciality.Font = new Font("Century Gothic", 14F);
             Change_Speciality.ForeColor = SystemColors.Desktop;
-            Change_Speciality.Location = new Point(457, 627);
+            Change_Speciality.Location = new Point(456, 649);
             Change_Speciality.Name = "Change_Speciality";
             Change_Speciality.Size = new Size(273, 30);
             Change_Speciality.TabIndex = 16;
@@ -478,7 +490,7 @@
             // 
             Address_Title.AutoSize = true;
             Address_Title.Font = new Font("Century Gothic", 19F);
-            Address_Title.Location = new Point(45, 589);
+            Address_Title.Location = new Point(44, 611);
             Address_Title.Name = "Address_Title";
             Address_Title.Size = new Size(114, 32);
             Address_Title.TabIndex = 15;
@@ -490,7 +502,7 @@
             Change_Address.Enabled = false;
             Change_Address.Font = new Font("Century Gothic", 14F);
             Change_Address.ForeColor = SystemColors.Desktop;
-            Change_Address.Location = new Point(48, 627);
+            Change_Address.Location = new Point(47, 649);
             Change_Address.Name = "Change_Address";
             Change_Address.Size = new Size(273, 30);
             Change_Address.TabIndex = 14;
@@ -499,7 +511,7 @@
             // 
             Type_Title.AutoSize = true;
             Type_Title.Font = new Font("Century Gothic", 19F);
-            Type_Title.Location = new Point(863, 481);
+            Type_Title.Location = new Point(862, 503);
             Type_Title.Name = "Type_Title";
             Type_Title.Size = new Size(192, 32);
             Type_Title.TabIndex = 13;
@@ -511,7 +523,7 @@
             Change_Type.Enabled = false;
             Change_Type.Font = new Font("Century Gothic", 14F);
             Change_Type.ForeColor = SystemColors.Desktop;
-            Change_Type.Location = new Point(868, 519);
+            Change_Type.Location = new Point(867, 541);
             Change_Type.Name = "Change_Type";
             Change_Type.Size = new Size(273, 30);
             Change_Type.TabIndex = 12;
@@ -520,7 +532,7 @@
             // 
             Gender_Title.AutoSize = true;
             Gender_Title.Font = new Font("Century Gothic", 19F);
-            Gender_Title.Location = new Point(457, 481);
+            Gender_Title.Location = new Point(456, 503);
             Gender_Title.Name = "Gender_Title";
             Gender_Title.Size = new Size(113, 32);
             Gender_Title.TabIndex = 11;
@@ -532,7 +544,7 @@
             Change_Gender.Enabled = false;
             Change_Gender.Font = new Font("Century Gothic", 14F);
             Change_Gender.ForeColor = SystemColors.Desktop;
-            Change_Gender.Location = new Point(459, 519);
+            Change_Gender.Location = new Point(458, 541);
             Change_Gender.Name = "Change_Gender";
             Change_Gender.Size = new Size(273, 30);
             Change_Gender.TabIndex = 10;
@@ -541,7 +553,7 @@
             // 
             DOB_Title.AutoSize = true;
             DOB_Title.Font = new Font("Century Gothic", 19F);
-            DOB_Title.Location = new Point(47, 481);
+            DOB_Title.Location = new Point(46, 503);
             DOB_Title.Name = "DOB_Title";
             DOB_Title.Size = new Size(174, 32);
             DOB_Title.TabIndex = 9;
@@ -553,7 +565,7 @@
             Change_DOB.Enabled = false;
             Change_DOB.Font = new Font("Century Gothic", 14F);
             Change_DOB.ForeColor = SystemColors.Desktop;
-            Change_DOB.Location = new Point(50, 519);
+            Change_DOB.Location = new Point(49, 541);
             Change_DOB.Name = "Change_DOB";
             Change_DOB.Size = new Size(273, 30);
             Change_DOB.TabIndex = 8;
@@ -562,7 +574,7 @@
             // 
             Email_Title.AutoSize = true;
             Email_Title.Font = new Font("Century Gothic", 19F);
-            Email_Title.Location = new Point(863, 371);
+            Email_Title.Location = new Point(862, 393);
             Email_Title.Name = "Email_Title";
             Email_Title.Size = new Size(82, 32);
             Email_Title.TabIndex = 7;
@@ -574,7 +586,7 @@
             Change_Email.Enabled = false;
             Change_Email.Font = new Font("Century Gothic", 14F);
             Change_Email.ForeColor = SystemColors.Desktop;
-            Change_Email.Location = new Point(868, 409);
+            Change_Email.Location = new Point(867, 431);
             Change_Email.Name = "Change_Email";
             Change_Email.Size = new Size(273, 30);
             Change_Email.TabIndex = 6;
@@ -583,7 +595,7 @@
             // 
             Name_Title.AutoSize = true;
             Name_Title.Font = new Font("Century Gothic", 19F);
-            Name_Title.Location = new Point(457, 371);
+            Name_Title.Location = new Point(456, 393);
             Name_Title.Name = "Name_Title";
             Name_Title.Size = new Size(92, 32);
             Name_Title.TabIndex = 5;
@@ -595,7 +607,7 @@
             Change_Name.Enabled = false;
             Change_Name.Font = new Font("Century Gothic", 14F);
             Change_Name.ForeColor = SystemColors.Desktop;
-            Change_Name.Location = new Point(459, 409);
+            Change_Name.Location = new Point(458, 431);
             Change_Name.Name = "Change_Name";
             Change_Name.Size = new Size(273, 30);
             Change_Name.TabIndex = 4;
@@ -604,7 +616,7 @@
             // 
             ID_Title.AutoSize = true;
             ID_Title.Font = new Font("Century Gothic", 19F);
-            ID_Title.Location = new Point(47, 371);
+            ID_Title.Location = new Point(46, 393);
             ID_Title.Name = "ID_Title";
             ID_Title.Size = new Size(148, 32);
             ID_Title.TabIndex = 3;
@@ -613,9 +625,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(459, 11);
+            pictureBox1.Location = new Point(459, 20);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(270, 257);
+            pictureBox1.Size = new Size(331, 306);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -626,41 +638,48 @@
             Change_ID.Enabled = false;
             Change_ID.Font = new Font("Century Gothic", 14F);
             Change_ID.ForeColor = SystemColors.Desktop;
-            Change_ID.Location = new Point(50, 409);
+            Change_ID.Location = new Point(49, 431);
             Change_ID.Name = "Change_ID";
             Change_ID.Size = new Size(273, 30);
             Change_ID.TabIndex = 1;
             // 
-            // Personal_Details
+            // button1
             // 
-            Personal_Details.AutoSize = true;
-            Personal_Details.Font = new Font("Century Gothic", 28F);
-            Personal_Details.Location = new Point(439, 285);
-            Personal_Details.Name = "Personal_Details";
-            Personal_Details.Size = new Size(313, 45);
-            Personal_Details.TabIndex = 0;
-            Personal_Details.Text = "Personal Details";
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(19, 330);
+            button1.Margin = new Padding(4, 3, 4, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(213, 55);
+            button1.TabIndex = 14;
+            button1.Text = " Reports";
+            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button1.UseVisualStyleBackColor = true;
             // 
-            // StudentForm
+            // InstructorForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1445, 800);
             Controls.Add(RedFlag);
+            Controls.Add(HomePanel);
+            Controls.Add(RedBar);
+            Controls.Add(SidePanel);
+            Controls.Add(Personal_info_Panel);
             Controls.Add(but_setting);
             Controls.Add(but_Notification);
             Controls.Add(but_Close);
             Controls.Add(but_instagram);
             Controls.Add(but_twitter);
             Controls.Add(but_FB);
-            Controls.Add(RedBar);
-            Controls.Add(SidePanel);
-            Controls.Add(HomePanel);
-            Controls.Add(Personal_info_Panel);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
-            Name = "StudentForm";
+            Name = "InstructorForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             SidePanel.ResumeLayout(false);
@@ -682,7 +701,7 @@
         private System.Windows.Forms.Button but_Home;
         private System.Windows.Forms.Panel RedBar;
         private System.Windows.Forms.Button but_Pinfo;
-        private System.Windows.Forms.Button but_Exams;
+        private System.Windows.Forms.Button but_GenExams;
         private System.Windows.Forms.Button but_Close;
         private System.Windows.Forms.Button but_instagram;
         private System.Windows.Forms.Button but_twitter;
@@ -712,7 +731,7 @@
         private TextBox Change_Email;
         private Label Name_Title;
         private TextBox Change_Name;
-        private Label Speciality_Title;
+        private Label Salary_Title;
         private TextBox Change_Speciality;
         private Label Address_Title;
         private TextBox Change_Address;
@@ -722,6 +741,7 @@
         private TextBox Change_Gender;
         private Label DOB_Title;
         private TextBox Change_DOB;
+        private Button button1;
     }
 }
 
