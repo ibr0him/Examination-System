@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,33 +34,39 @@ namespace Examination_System
             string email = textBox_email.Text;
             string pass = textBox_password.Text;
             string[] Student;
+            string[] Teachers;
 
             // Will Return all user attributes union Student attributes "ID No Dublication"
-            int flag = SelectQ(@$"Select U.*,S.Specialist From Users U, Student S 
-                            Where U.Email ='{email}' AND U.Password = '{pass}'
-                            And U.ID=S.ID", out Student);
+            int flag = SelectQ(@$"Select * From Users
+                            Where Email ='{email}' AND Password = '{pass}'", out Student);
             if (flag == 1)
             {
                 if (Student[6] == "Student")
                 {
+                    SelectQ(@$"Select U.*,S.Specialist From Users U, Student S 
+                            Where U.Email ='{email}' AND U.Password = '{pass}'
+                            And U.ID=S.ID", out Student);
+
                     StudentForm main = new StudentForm(Student);
                     this.Hide();
                     main.Show();
                 }
                 else
                 {
+                    SelectQ(@$"Select U.*,I.Salary From Users U, Ins I 
+                        Where U.Email ='{email}' AND U.Password = '{pass}'
+                        And U.ID=I.ID", out Teachers);
                     // Naviagte to Instructor Page
                 }
 
             }
             else
+            {
                 if (textBox_email.Text == "" || textBox_password.Text == "")
-                MessageBox.Show("Need login data", "Wrong Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-                MessageBox.Show("Your Password or Email Is not Correct", "Wrong Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
-
+                    MessageBox.Show("Need login data", "Wrong Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Your Password or Email Is not Correct", "Wrong Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

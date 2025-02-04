@@ -49,19 +49,25 @@ namespace Examination_System
         {
             Highlighter.Height = but_Home.Height;
             Highlighter.Top = but_Home.Top;
-
+           
         }
 
         private void but_Pinfo_Click(object sender, EventArgs e)
         {
+            StudentPersonalInfo info_sub = new StudentPersonalInfo();
             Highlighter.Height = but_Pinfo.Height;
             Highlighter.Top = but_Pinfo.Top;
+            this.Hide();
+            info_sub.Show();
         }
 
         private void but_Exams_Click(object sender, EventArgs e)
         {
+            StudentExam exam_sub = new StudentExam();
             Highlighter.Height = but_Exams.Height;
             Highlighter.Top = but_Exams.Top;
+            this.Hide();
+            exam_sub.Show();
         }
 
         private void but_Logout_Click(object sender, EventArgs e)
