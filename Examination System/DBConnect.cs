@@ -8,25 +8,82 @@ using Microsoft.Data.SqlClient;
 using Examination_System;
 using System.Diagnostics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Data;
 
 public static class DBConnect
 {
 
     private static SqlConnection con;
-    
-    //Replace this ConnectionString with Yours 
-    private static string connectionString = "Data Source=LAPTOP-26BRTGHE\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
+    //Replace this ConnectionString with Yours 
+    private static string connectionString = "Data Source=YAHYA\\SQLEXPRESS;Initial Catalog=Examination System;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
     // Used only For Select Query or Procedures that Returns Select Statement ,Name Must Contain "Select" Word
     // If Successful 
-        // Returns 1
-        // Returns Query Result as an String Array passed by referance
-        // for example if query result is (ID Name Subject) function result will be 3 rows
+    // Returns 1
+    // Returns Query Result as an String Array passed by referance
+    // for example if query result is (ID Name Subject) function result will be 3 rows
     // else
-        // Returns 0
-        // and The Error Message will be in the passed by ref varable
+    // Returns 0
+    // and The Error Message will be in the passed by ref varable
 
     // You don't need to intialize the Array_ofStrings before Passing it
+
+    public static int ProcedureQ(string storedProcedureName, string[] paramNames, object[] paramValues, out string[] Array_OfStrings)
+    {
+        string Result = string.Empty;
+
+        try
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (SqlCommand command = new SqlCommand(storedProcedureName, con))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Ensure parameter names and values match in length
+                    if (paramNames != null && paramValues != null && paramNames.Length == paramValues.Length)
+                    {
+                        for (int i = 0; i < paramNames.Length; i++)
+                        {
+                            if (!string.IsNullOrEmpty(paramNames[i]))
+                            {
+                                command.Parameters.AddWithValue(paramNames[i], paramValues[i] ?? DBNull.Value);
+                            }
+                        }
+                    }
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                Result += reader.IsDBNull(i) ? "NULL\n" : reader[i].ToString() + "\n";
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (string.IsNullOrEmpty(Result))
+            {
+                Array_OfStrings = new string[] { "No Result" };
+                return 0;
+            }
+        }
+        catch (Exception error)
+        {
+            Debug.WriteLine(error);
+            Array_OfStrings = new string[] { $"Error Message: {error.Message}" };
+            return 0;
+        }
+
+        Array_OfStrings = Result.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+        return 1;
+    }
+
+
     public static int SelectQ(string Query, out string[] Array_OfStrings)
     {
         string Result = string.Empty;
