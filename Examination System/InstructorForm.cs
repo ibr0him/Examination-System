@@ -16,10 +16,9 @@ namespace Examination_System
 {
     public partial class InstructorForm : Form
     {
-        
-        int[] course_id;
-        int[] std_num;
-        string[] course_name;
+
+        List<Course> coursesList = new List<Course>();
+        string[] coursesArray;
         string[] exam;
         public InstructorForm(string[] Teacher)
         {
@@ -47,20 +46,28 @@ namespace Examination_System
             Clab_track.Text = temp[0];
 
             string[] courses;
-            
-            ProcedureQ("ReportInstCourses", ["@Inst_Id"], [Teacher[0]], out courses);
-            course_id = new int[courses.Length];  // Adjust the size based on the number of courses you expect
-            std_num = new int[courses.Length];
-            course_name = new string[courses.Length];
-            for (int i = 0; i < courses.Length; i+=3)
-            {
-                course_name[i]= courses[i];
-                course_id[i] = int.Parse(courses[i+1]);
-                std_num[i] = int.Parse(courses[i+2]);
-                dataGridView1.Rows.Add(courses[i], courses[i+2]);
 
+            ProcedureQ("ReportInstCourses", new string[] { "@Inst_Id" }, new object[] { Teacher[0] }, out string[] coursesArray);
+
+            if (coursesArray.Length % 3 != 0)
+            {
+                MessageBox.Show("Error: Unexpected course data format.");
             }
-           
+            else
+            {
+                for (int i = 0; i < coursesArray.Length; i += 3)
+                {
+                    var course = new Course(
+                        coursesArray[i], // Course Name
+                        int.Parse(coursesArray[i + 1]), // Course ID
+                        int.Parse(coursesArray[i + 2])  // Student Number
+                    );
+
+                    coursesList.Add(course);
+
+                    dataGridView1.Rows.Add(course.Id, course.Name, course.StudentCount);
+                }
+            }
 
             gen_exam_panel.Visible = false;
             Personal_info_Panel.Visible = false;
@@ -148,25 +155,45 @@ namespace Examination_System
         {
 
         }
-        private void gen_exam_click(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                string courseName = dataGridView1.Rows[e.RowIndex].Cells["Course"].Value.ToString();
-                int courseId = course_id[e.RowIndex];
-                using (InputDialog dialog = new InputDialog(courseName))
+                var columnIndex = e.ColumnIndex;
+
+                string courseName = dataGridView1.Rows[e.RowIndex].Cells["CourseName"].Value.ToString();
+                int courseId = (int)dataGridView1.Rows[e.RowIndex].Cells["CourseID"].Value;
+
+                if (dataGridView1.Columns[columnIndex].Name == "gen")
                 {
-                    if (dialog.ShowDialog() == DialogResult.OK)
+                    using (InputDialog dialog = new InputDialog(courseName))
                     {
-                        int input1 = int.Parse(dialog.Input1);
-                        int input2 = int.Parse(dialog.Input2);
-                        int[] tmep = [courseId, input1, input2];
-                        ProcedureQ("GenerateExam", ["@Crs_ID","@MCQ_Count","@TF_Count"], [courseId, input1,input2], out exam);
-                        MessageBox.Show($"Exam generated for {courseName} with inputs: {input1}, {input2}");
+                        if (dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            int input1 = int.Parse(dialog.Input1); // MCQ count
+                            int input2 = int.Parse(dialog.Input2); // True/False count
+
+                            ProcedureQ("GenerateExam",
+                                new string[] { "@Crs_ID", "@MCQ_Count", "@TF_Count" },
+                                new object[] { courseId, input1, input2 },
+                                out string[] exam);
+
+                            MessageBox.Show($"Exam generated for {courseName} with {input1} MCQs and {input2} True/False questions.");
+                        }
                     }
+                }
+                else if (dataGridView1.Columns[columnIndex].Name == "viewExamsButton")
+                {
+                    ViewExams(courseName, courseId);
                 }
             }
         }
+
+        private void ViewExams(string courseName, int courseId)
+        {
+            MessageBox.Show($"Viewing exams for {courseName} (Course ID: {courseId})");
+        }
+
 
     }
 }

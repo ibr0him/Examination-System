@@ -30,24 +30,26 @@ namespace Examination_System
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstructorForm));
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             SidePanel = new Panel();
-            gen_exam_panel = new Panel();
-            label1 = new Label();
-            dataGridView1 = new DataGridView();
-            Course = new DataGridViewTextBoxColumn();
-            Student_Number = new DataGridViewTextBoxColumn();
-            gen = new DataGridViewButtonColumn();
             button1 = new Button();
             but_Logout = new Button();
             Highlighter = new Panel();
             but_GenExams = new Button();
             but_Pinfo = new Button();
             but_Home = new Button();
+            gen_exam_panel = new Panel();
+            label1 = new Label();
+            dataGridView1 = new DataGridView();
+            CourseID = new DataGridViewTextBoxColumn();
+            CourseName = new DataGridViewTextBoxColumn();
+            StudentNumber = new DataGridViewTextBoxColumn();
+            gen = new DataGridViewButtonColumn();
+            viewExamsButton = new DataGridViewButtonColumn();
+            Course = new DataGridViewTextBoxColumn();
+            Student_Number = new DataGridViewTextBoxColumn();
             RedBar = new Panel();
             but_Close = new Button();
             but_instagram = new Button();
@@ -113,104 +115,6 @@ namespace Examination_System
             SidePanel.Size = new Size(286, 1067);
             SidePanel.TabIndex = 0;
             // 
-            // gen_exam_panel
-            // 
-            gen_exam_panel.Controls.Add(label1);
-            gen_exam_panel.Controls.Add(dataGridView1);
-            gen_exam_panel.Location = new Point(289, 106);
-            gen_exam_panel.Margin = new Padding(3, 4, 3, 4);
-            gen_exam_panel.Name = "gen_exam_panel";
-            gen_exam_panel.Size = new Size(1320, 944);
-            gen_exam_panel.TabIndex = 14;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 24F);
-            label1.Location = new Point(498, 46);
-            label1.Name = "label1";
-            label1.Size = new Size(329, 49);
-            label1.TabIndex = 0;
-            label1.Text = "Generate Exam";
-            label1.Click += label1_Click;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.BackgroundColor = SystemColors.Menu;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Course, Student_Number, gen });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.GridColor = SystemColors.Menu;
-            dataGridView1.ImeMode = ImeMode.On;
-            dataGridView1.Location = new Point(193, 179);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dataGridView1.ShowCellErrors = false;
-            dataGridView1.ShowCellToolTips = false;
-            dataGridView1.ShowEditingIcon = false;
-            dataGridView1.ShowRowErrors = false;
-            dataGridView1.Size = new Size(1060, 567);
-            dataGridView1.TabIndex = 18;
-            // 
-            // Course
-            // 
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Course.DefaultCellStyle = dataGridViewCellStyle2;
-            Course.FillWeight = 37.727272F;
-            Course.HeaderText = "Course";
-            Course.MinimumWidth = 6;
-            Course.Name = "Course";
-            Course.ReadOnly = true;
-            Course.Width = 350;
-            // 
-            // Student_Number
-            // 
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Student_Number.DefaultCellStyle = dataGridViewCellStyle3;
-            Student_Number.FillWeight = 124.659386F;
-            Student_Number.HeaderText = "Student Number";
-            Student_Number.MinimumWidth = 6;
-            Student_Number.Name = "Student_Number";
-            Student_Number.ReadOnly = true;
-            Student_Number.Width = 300;
-            // 
-            // gen
-            // 
-            gen.FillWeight = 137.613373F;
-            gen.HeaderText = "";
-            gen.MinimumWidth = 6;
-            gen.Name = "gen";
-            gen.ReadOnly = true;
-            gen.Text = "Generate Exam";
-            gen.UseColumnTextForButtonValue = true;
-            gen.Width = 150;
-            dataGridView1.CellContentClick += gen_exam_click;            // 
             // button1
             // 
             button1.FlatAppearance.BorderSize = 0;
@@ -308,6 +212,132 @@ namespace Examination_System
             but_Home.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_Home.UseVisualStyleBackColor = true;
             but_Home.Click += but_Home_Click;
+            // 
+            // gen_exam_panel
+            // 
+            gen_exam_panel.Controls.Add(label1);
+            gen_exam_panel.Controls.Add(dataGridView1);
+            gen_exam_panel.Location = new Point(289, 107);
+            gen_exam_panel.Margin = new Padding(3, 4, 3, 4);
+            gen_exam_panel.Name = "gen_exam_panel";
+            gen_exam_panel.Size = new Size(1362, 943);
+            gen_exam_panel.TabIndex = 14;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 24F);
+            label1.Location = new Point(498, 46);
+            label1.Name = "label1";
+            label1.Size = new Size(329, 49);
+            label1.TabIndex = 0;
+            label1.Text = "Generate Exam";
+            label1.Click += label1_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.BackgroundColor = SystemColors.Menu;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Tahoma", 16F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { CourseID, CourseName, StudentNumber, gen, viewExamsButton });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.GridColor = SystemColors.Menu;
+            dataGridView1.ImeMode = ImeMode.On;
+            dataGridView1.Location = new Point(53, 173);
+            dataGridView1.MultiSelect = false;
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridView1.ShowCellErrors = false;
+            dataGridView1.ShowCellToolTips = false;
+            dataGridView1.ShowEditingIcon = false;
+            dataGridView1.ShowRowErrors = false;
+            dataGridView1.Size = new Size(1281, 670);
+            dataGridView1.TabIndex = 18;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // CourseID
+            // 
+            CourseID.FillWeight = 20F;
+            CourseID.HeaderText = "Course ID";
+            CourseID.MinimumWidth = 6;
+            CourseID.Name = "CourseID";
+            CourseID.ReadOnly = true;
+            CourseID.Width = 300;
+            // 
+            // CourseName
+            // 
+            CourseName.FillWeight = 50F;
+            CourseName.HeaderText = "Course Name";
+            CourseName.MinimumWidth = 6;
+            CourseName.Name = "CourseName";
+            CourseName.ReadOnly = true;
+            CourseName.Width = 300;
+            // 
+            // StudentNumber
+            // 
+            StudentNumber.FillWeight = 30F;
+            StudentNumber.HeaderText = "Student Number";
+            StudentNumber.MinimumWidth = 6;
+            StudentNumber.Name = "StudentNumber";
+            StudentNumber.ReadOnly = true;
+            StudentNumber.Width = 300;
+            // 
+            // gen
+            // 
+            gen.FillWeight = 40F;
+            gen.HeaderText = "";
+            gen.MinimumWidth = 6;
+            gen.Name = "gen";
+            gen.ReadOnly = true;
+            gen.Text = "Generate Exam";
+            gen.UseColumnTextForButtonValue = true;
+            gen.Width = 150;
+            // 
+            // viewExamsButton
+            // 
+            viewExamsButton.HeaderText = "";
+            viewExamsButton.MinimumWidth = 6;
+            viewExamsButton.Name = "viewExamsButton";
+            viewExamsButton.ReadOnly = true;
+            viewExamsButton.Text = "View Exams";
+            viewExamsButton.UseColumnTextForButtonValue = true;
+            viewExamsButton.Width = 150;
+            // 
+            // Course
+            // 
+            Course.MinimumWidth = 6;
+            Course.Name = "Course";
+            Course.Width = 125;
+            // 
+            // Student_Number
+            // 
+            Student_Number.MinimumWidth = 6;
+            Student_Number.Name = "Student_Number";
+            Student_Number.Width = 125;
             // 
             // RedBar
             // 
@@ -873,7 +903,11 @@ namespace Examination_System
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn Course;
         private DataGridViewTextBoxColumn Student_Number;
+        private DataGridViewTextBoxColumn CourseID;
+        private DataGridViewTextBoxColumn CourseName;
+        private DataGridViewTextBoxColumn StudentNumber;
         private DataGridViewButtonColumn gen;
+        private DataGridViewButtonColumn viewExamsButton;
     }
 }
 
