@@ -18,8 +18,13 @@ namespace Examination_System
     {
 
         List<Course> coursesList = new List<Course>();
-        string[] coursesArray;
-        string[] exam;
+        List<Exam> examList = new List<Exam>();
+        private List<string> imagePaths = new List<string>
+    {
+        "D:\\Work\\iti\\Courses\\database\\database2\\project\\Examination-System-master\\result_Final.PNG"
+
+    };
+
         public InstructorForm(string[] Teacher)
         {
             InitializeComponent();
@@ -45,7 +50,6 @@ namespace Examination_System
                         Where T.ID ={Teacher[0]}", out temp);
             Clab_track.Text = temp[0];
 
-            string[] courses;
 
             ProcedureQ("ReportInstCourses", new string[] { "@Inst_Id" }, new object[] { Teacher[0] }, out string[] coursesArray);
 
@@ -191,7 +195,80 @@ namespace Examination_System
 
         private void ViewExams(string courseName, int courseId)
         {
-            MessageBox.Show($"Viewing exams for {courseName} (Course ID: {courseId})");
+            examList.Clear();
+            view_exams_panel.Controls.Clear();
+            ProcedureQ("GetExamsByCourse", new string[] { "@Crs_id" }, new object[] { courseId }, out string[] examArray);
+            
+            if (examArray.Length % 5 != 0)
+            {
+                MessageBox.Show("No Exams For This Course.");
+            }
+            else
+            {
+                int buttonsPerRow = 5;
+                int buttonWidth = 150;
+                int buttonHeight = 150;
+                int spacingX = 50; // Horizontal spacing
+                int spacingY =50; // Vertical spacing
+
+                for (int i = 0; i < examArray.Length; i += 5)
+                {
+                    var exam = new Exam(
+                        int.Parse(examArray[i]),
+                        int.Parse(examArray[i + 1]),
+                        int.Parse(examArray[i + 2]),
+                        int.Parse(examArray[i + 3]),
+                        int.Parse(examArray[i + 4])
+                    );
+
+                    examList.Add(exam);
+                    gen_exam_panel.Visible = false;
+                    view_exams_panel.Visible = true;
+                }
+                for(int i = 0; i < examList.Count; i++)
+                {
+
+                    int row = (i / buttonsPerRow) % 2;
+                    int col = (i % buttonsPerRow);
+
+                    // Container for PictureBox and Label
+                    Panel panel = new Panel
+                    {
+                        Width = buttonWidth,
+                        Height = buttonHeight + 30, // Extra space for label
+                        Top = 300 + (row * (buttonHeight + spacingY)),
+                        Left = 150 + (col * (buttonWidth + spacingX))
+                    };
+
+                    // PictureBox as the button image
+                    PictureBox pictureBox = new PictureBox
+                    {
+                        Width = buttonWidth,
+                        Height = buttonHeight,
+                        Image = Image.FromFile($"D:\\Work\\iti\\Courses\\database\\database2\\project\\Examination-System-master\\result_Final.PNG"), // Change to your image path
+                        SizeMode = PictureBoxSizeMode.AutoSize, // Ensure it fits
+                        Cursor = Cursors.Hand
+                    };
+
+                    pictureBox.Click += (sender, e) => MessageBox.Show($"Button {i + 1} clicked!");
+
+                    // Label for text
+                    Label label = new Label
+                    {
+                        Text = $"Exam {i + 1}",
+                        Width = buttonWidth,
+                        Height = 20,
+                        TextAlign = ContentAlignment.MiddleLeft,
+                        Top = buttonHeight + 5
+                    };
+
+                    // Add controls to panel
+                    panel.Controls.Add(pictureBox);
+                    panel.Controls.Add(label);
+                    view_exams_panel.Controls.Add(panel);
+                }
+            }
+        
         }
 
 

@@ -31,8 +31,8 @@ namespace Examination_System
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstructorForm));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             SidePanel = new Panel();
             button1 = new Button();
             but_Logout = new Button();
@@ -88,6 +88,7 @@ namespace Examination_System
             ID_Title = new Label();
             pictureBox1 = new PictureBox();
             Change_ID = new TextBox();
+            view_exams_panel = new Panel();
             SidePanel.SuspendLayout();
             gen_exam_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -242,24 +243,24 @@ namespace Examination_System
             dataGridView1.BackgroundColor = SystemColors.Menu;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Tahoma", 16F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { CourseID, CourseName, StudentNumber, gen, viewExamsButton });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = SystemColors.Menu;
             dataGridView1.ImeMode = ImeMode.On;
@@ -812,6 +813,14 @@ namespace Examination_System
             Change_ID.Size = new Size(311, 36);
             Change_ID.TabIndex = 1;
             // 
+            // view_exams_panel
+            // 
+            view_exams_panel.Location = new Point(303, 74);
+            view_exams_panel.Margin = new Padding(3, 4, 3, 4);
+            view_exams_panel.Name = "view_exams_panel";
+            view_exams_panel.Size = new Size(1320, 944);
+            view_exams_panel.TabIndex = 18;
+            // 
             // InstructorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -821,7 +830,6 @@ namespace Examination_System
             Controls.Add(HomePanel);
             Controls.Add(RedBar);
             Controls.Add(SidePanel);
-            Controls.Add(Personal_info_Panel);
             Controls.Add(but_setting);
             Controls.Add(but_Notification);
             Controls.Add(but_Close);
@@ -829,6 +837,8 @@ namespace Examination_System
             Controls.Add(but_twitter);
             Controls.Add(but_FB);
             Controls.Add(gen_exam_panel);
+            Controls.Add(Personal_info_Panel);
+            Controls.Add(view_exams_panel);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 4, 5, 4);
@@ -908,6 +918,7 @@ namespace Examination_System
         private DataGridViewTextBoxColumn StudentNumber;
         private DataGridViewButtonColumn gen;
         private DataGridViewButtonColumn viewExamsButton;
+        private Panel view_exams_panel;
     }
 }
 
