@@ -17,6 +17,10 @@ namespace Examination_System
 {
     public partial class InstructorForm : Form
     {
+        // For Making the form Dragable on dragging Certain Forms
+        private bool Win_dragging = false;
+        private Point Win_dragCursorPoint;
+        private Point Win_dragFormPoint;
 
         private void but_Close_Click(object sender, EventArgs e)
         {
@@ -59,7 +63,7 @@ namespace Examination_System
             view_exams_panel.Visible = false;
             RedBar.Visible = true;
             RedFlag.Visible = true;
-            gen_exam_panel.Visible = true; 
+            gen_exam_panel.Visible = true;
         }
 
         private void but_Logout_Click(object sender, EventArgs e)
@@ -97,5 +101,99 @@ namespace Examination_System
             });
         }
 
+        private void PinfoTB_Selected(object sender, EventArgs e)
+        {
+            Pinfo_Save.Visible = true;
+        }
+
+        private void Pinfo_Save_Click(object sender, EventArgs e)
+        {
+            // vaildation DOB
+
+            if (Teachers[4] != Change_DOB.Text)
+            {
+                Teachers[4] = Change_DOB.Text.Trim();
+
+                string temp = Teachers[4];
+                int count = 0;
+
+                for (int i = 0; i < temp.Length; i++)
+                    if (temp[i] == '/')
+                        count++;
+
+                if (count != 2)
+                {
+                    MessageBox.Show("Please Enter The DOB in This Formate 'DD/MM/YYY'",
+                        "Wrong DOB Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    string[] Num = temp.Split('/');
+                    for (int i = 0; i < Num.Length; i++)
+                        if (!int.TryParse(Num[i], out int number))
+                        {
+                            MessageBox.Show("DOB Only Accepts Numbers With Special Charater '/ '",
+                                "Wrong DOB Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                }
+
+            }
+
+            Teachers[1] = Change_Name.Text.Trim();
+            Teachers[7] = Change_Address.Text.Trim();
+            Teachers[8] = Change_Salary.Text.Trim();
+
+            string result = string.Empty;
+            string Query1 = $@"Update Users
+                            Set Name = '{Teachers[1]}',DOB ='{Teachers[4]}',Address='{Teachers[7]}'
+                            Where ID = {Teachers[0]}";
+
+
+            result = $"{ModifyQ(Query1)}";
+
+            if (result.Contains("Error"))
+            {
+                MessageBox.Show(result, "Wrong Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+                MessageBox.Show("Information Has Been Updated Successfully");
+
+            Pinfo_Save.Visible = false;
+        }
+
+        private void but_Notification_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Futuristic Feature Not Required And Not Implemented Yet !");
+        }
+
+        private void but_setting_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Futuristic Feature Not Required And Not Implemented Yet !");
+        }
+
+        private void Panel_MouseDown(object sender, MouseEventArgs e)
+        {
+            Win_dragging = true;
+            Win_dragCursorPoint = Cursor.Position;
+            Win_dragFormPoint = this.Location;
+        }
+
+        private void Panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Win_dragging)
+            {
+                Point diff = Point.Subtract(Cursor.Position, new Size(Win_dragCursorPoint));
+                this.Location = Point.Add(Win_dragFormPoint, new Size(diff));
+            }
+        }
+
+        private void Panel_MouseUp(object sender, MouseEventArgs e)
+        {
+            Win_dragging = false;
+        }
     }
 }

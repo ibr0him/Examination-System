@@ -20,6 +20,9 @@ namespace Examination_System
 
         List<Course> coursesList = new List<Course>();
         List<Exam> examList = new List<Exam>();
+
+        // To Transfer Teacher's Personal Data
+        private static string[] Teachers;
         public InstructorForm(string[] Teacher)
         {
             InitializeComponent();
@@ -68,7 +71,11 @@ namespace Examination_System
             }
 
             gen_exam_panel.Visible = false;
+            
+            
+            // Personal Info Page
             Personal_info_Panel.Visible = false;
+            Pinfo_Save.Visible = false;
 
             Change_ID.Text = " " + Teacher[0];
             Change_Name.Text = " " + Teacher[1];
@@ -77,7 +84,9 @@ namespace Examination_System
             Change_Gender.Text = " " + Teacher[5];
             Change_Type.Text = " " + Teacher[6];
             Change_Address.Text = " " + Teacher[7];
-            Change_Speciality.Text = " " + Teacher[8];
+            Change_Salary.Text = $" {Teacher[8]:C}";
+            
+            Teachers = Teacher;
 
         }
 
