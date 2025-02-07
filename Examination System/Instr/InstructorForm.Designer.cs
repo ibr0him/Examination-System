@@ -233,7 +233,6 @@ namespace Examination_System
             label1.Size = new Size(329, 49);
             label1.TabIndex = 0;
             label1.Text = "Generate Exam";
-            label1.Click += label1_Click;
             // 
             // dataGridView1
             // 
@@ -815,10 +814,10 @@ namespace Examination_System
             // 
             // view_exams_panel
             // 
-            view_exams_panel.Location = new Point(303, 74);
+            view_exams_panel.Location = new Point(286, 107);
             view_exams_panel.Margin = new Padding(3, 4, 3, 4);
             view_exams_panel.Name = "view_exams_panel";
-            view_exams_panel.Size = new Size(1320, 944);
+            view_exams_panel.Size = new Size(1365, 960);
             view_exams_panel.TabIndex = 18;
             // 
             // InstructorForm

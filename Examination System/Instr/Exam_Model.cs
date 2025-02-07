@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examination_System
+namespace Examination_System.Instr
 {
     public class Exam
     {
@@ -14,7 +14,7 @@ namespace Examination_System
         public int TF_NO { get; set; }
         public int MCQ_NO { get; set; }
 
-        public Exam(int Id, int Crs_Id, int Duration,int TF_NO,int MCQ_NO)
+        public Exam(int Id, int Crs_Id, int Duration, int TF_NO, int MCQ_NO)
         {
             this.Id = Id;
             this.Crs_Id = Crs_Id;
