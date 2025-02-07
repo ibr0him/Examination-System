@@ -73,6 +73,17 @@
             pictureBox1 = new PictureBox();
             Change_ID = new TextBox();
             Personal_Details = new Label();
+            ExamView_Panel = new Panel();
+            LowerLarrow = new Button();
+            LowerRarrow = new Button();
+            Larrow = new Button();
+            Rarrow = new Button();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            TakeExam_Panel = new Panel();
+            but_Previous = new Button();
+            but_Next = new Button();
+            Q_Label = new Label();
             SidePanel.SuspendLayout();
             RedFlag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Project_icon).BeginInit();
@@ -80,6 +91,10 @@
             ((System.ComponentModel.ISupportInitialize)HomePanel_img).BeginInit();
             Personal_info_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ExamView_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            TakeExam_Panel.SuspendLayout();
             SuspendLayout();
             // 
             // SidePanel
@@ -96,9 +111,13 @@
             SidePanel.Name = "SidePanel";
             SidePanel.Size = new Size(232, 800);
             SidePanel.TabIndex = 0;
+            SidePanel.MouseDown += Panel_MouseDown;
+            SidePanel.MouseMove += Panel_MouseMove;
+            SidePanel.MouseUp += Panel_MouseUp;
             // 
             // but_Logout
             // 
+            but_Logout.Cursor = Cursors.Hand;
             but_Logout.FlatAppearance.BorderSize = 0;
             but_Logout.FlatStyle = FlatStyle.Flat;
             but_Logout.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -126,6 +145,7 @@
             // 
             // but_Exams
             // 
+            but_Exams.Cursor = Cursors.Hand;
             but_Exams.FlatAppearance.BorderSize = 0;
             but_Exams.FlatStyle = FlatStyle.Flat;
             but_Exams.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -144,6 +164,7 @@
             // 
             // but_Pinfo
             // 
+            but_Pinfo.Cursor = Cursors.Hand;
             but_Pinfo.FlatAppearance.BorderSize = 0;
             but_Pinfo.FlatStyle = FlatStyle.Flat;
             but_Pinfo.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -162,6 +183,7 @@
             // 
             // but_Home
             // 
+            but_Home.Cursor = Cursors.Hand;
             but_Home.FlatAppearance.BorderSize = 0;
             but_Home.FlatStyle = FlatStyle.Flat;
             but_Home.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -187,6 +209,9 @@
             RedBar.Name = "RedBar";
             RedBar.Size = new Size(1213, 24);
             RedBar.TabIndex = 1;
+            RedBar.MouseDown += Panel_MouseDown;
+            RedBar.MouseMove += Panel_MouseMove;
+            RedBar.MouseUp += Panel_MouseUp;
             // 
             // but_Close
             // 
@@ -271,6 +296,7 @@
             but_setting.TabIndex = 9;
             but_setting.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_setting.UseVisualStyleBackColor = true;
+            but_setting.Click += but_setting_Click;
             // 
             // but_Notification
             // 
@@ -287,6 +313,7 @@
             but_Notification.TabIndex = 10;
             but_Notification.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_Notification.UseVisualStyleBackColor = true;
+            but_Notification.Click += but_Notification_Click;
             // 
             // RedFlag
             // 
@@ -466,8 +493,8 @@
             // Change_Speciality
             // 
             Change_Speciality.BackColor = SystemColors.Control;
-            Change_Speciality.Enabled = false;
             Change_Speciality.Font = new Font("Century Gothic", 14F);
+            Change_Speciality.Enabled = false;
             Change_Speciality.ForeColor = SystemColors.Desktop;
             Change_Speciality.Location = new Point(457, 627);
             Change_Speciality.Name = "Change_Speciality";
@@ -641,12 +668,167 @@
             Personal_Details.TabIndex = 0;
             Personal_Details.Text = "Personal Details";
             // 
+            // ExamView_Panel
+            // 
+            ExamView_Panel.Controls.Add(LowerLarrow);
+            ExamView_Panel.Controls.Add(LowerRarrow);
+            ExamView_Panel.Controls.Add(Larrow);
+            ExamView_Panel.Controls.Add(Rarrow);
+            ExamView_Panel.Controls.Add(pictureBox3);
+            ExamView_Panel.Controls.Add(pictureBox2);
+            ExamView_Panel.Location = new Point(232, 103);
+            ExamView_Panel.Name = "ExamView_Panel";
+            ExamView_Panel.Size = new Size(1189, 677);
+            ExamView_Panel.TabIndex = 28;
+            // 
+            // LowerLarrow
+            // 
+            LowerLarrow.Cursor = Cursors.Hand;
+            LowerLarrow.FlatAppearance.BorderSize = 0;
+            LowerLarrow.FlatStyle = FlatStyle.Flat;
+            LowerLarrow.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LowerLarrow.ForeColor = Color.White;
+            LowerLarrow.Image = (Image)resources.GetObject("LowerLarrow.Image");
+            LowerLarrow.Location = new Point(35, 517);
+            LowerLarrow.Margin = new Padding(4, 3, 4, 3);
+            LowerLarrow.Name = "LowerLarrow";
+            LowerLarrow.Size = new Size(40, 55);
+            LowerLarrow.TabIndex = 17;
+            LowerLarrow.TextAlign = ContentAlignment.MiddleLeft;
+            LowerLarrow.TextImageRelation = TextImageRelation.ImageBeforeText;
+            LowerLarrow.UseVisualStyleBackColor = true;
+            LowerLarrow.Click += ExLarrow_Click;
+            // 
+            // LowerRarrow
+            // 
+            LowerRarrow.Cursor = Cursors.Hand;
+            LowerRarrow.FlatAppearance.BorderSize = 0;
+            LowerRarrow.FlatStyle = FlatStyle.Flat;
+            LowerRarrow.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LowerRarrow.ForeColor = Color.White;
+            LowerRarrow.Image = (Image)resources.GetObject("LowerRarrow.Image");
+            LowerRarrow.Location = new Point(1073, 491);
+            LowerRarrow.Margin = new Padding(4, 3, 4, 3);
+            LowerRarrow.Name = "LowerRarrow";
+            LowerRarrow.Size = new Size(40, 55);
+            LowerRarrow.TabIndex = 16;
+            LowerRarrow.TextAlign = ContentAlignment.MiddleLeft;
+            LowerRarrow.TextImageRelation = TextImageRelation.ImageBeforeText;
+            LowerRarrow.UseVisualStyleBackColor = true;
+            LowerRarrow.Click += ExRarrow_Click;
+            // 
+            // Larrow
+            // 
+            Larrow.Cursor = Cursors.Hand;
+            Larrow.FlatAppearance.BorderSize = 0;
+            Larrow.FlatStyle = FlatStyle.Flat;
+            Larrow.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Larrow.ForeColor = Color.White;
+            Larrow.Image = (Image)resources.GetObject("Larrow.Image");
+            Larrow.Location = new Point(35, 199);
+            Larrow.Margin = new Padding(4, 3, 4, 3);
+            Larrow.Name = "Larrow";
+            Larrow.Size = new Size(40, 55);
+            Larrow.TabIndex = 15;
+            Larrow.TextAlign = ContentAlignment.MiddleLeft;
+            Larrow.TextImageRelation = TextImageRelation.ImageBeforeText;
+            Larrow.UseVisualStyleBackColor = true;
+            Larrow.Click += ExLarrow_Click;
+            // 
+            // Rarrow
+            // 
+            Rarrow.Cursor = Cursors.Hand;
+            Rarrow.FlatAppearance.BorderSize = 0;
+            Rarrow.FlatStyle = FlatStyle.Flat;
+            Rarrow.Font = new Font("Century Gothic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Rarrow.ForeColor = Color.White;
+            Rarrow.Image = (Image)resources.GetObject("Rarrow.Image");
+            Rarrow.Location = new Point(1073, 199);
+            Rarrow.Margin = new Padding(4, 3, 4, 3);
+            Rarrow.Name = "Rarrow";
+            Rarrow.Size = new Size(40, 55);
+            Rarrow.TabIndex = 14;
+            Rarrow.TextAlign = ContentAlignment.MiddleLeft;
+            Rarrow.TextImageRelation = TextImageRelation.ImageBeforeText;
+            Rarrow.UseVisualStyleBackColor = true;
+            Rarrow.Click += ExRarrow_Click;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(1078, 16);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(47, 12);
+            pictureBox3.TabIndex = 1;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(1145, 16);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(28, 10);
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
+            // 
+            // TakeExam_Panel
+            // 
+            TakeExam_Panel.Controls.Add(but_Previous);
+            TakeExam_Panel.Controls.Add(but_Next);
+            TakeExam_Panel.Controls.Add(Q_Label);
+            TakeExam_Panel.Location = new Point(235, 77);
+            TakeExam_Panel.Name = "TakeExam_Panel";
+            TakeExam_Panel.Size = new Size(1198, 711);
+            TakeExam_Panel.TabIndex = 29;
+            // 
+            // but_Previous
+            // 
+            but_Previous.BackColor = Color.FromArgb(178, 8, 55);
+            but_Previous.FlatStyle = FlatStyle.Flat;
+            but_Previous.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            but_Previous.ForeColor = Color.White;
+            but_Previous.Location = new Point(159, 444);
+            but_Previous.Name = "but_Previous";
+            but_Previous.RightToLeft = RightToLeft.No;
+            but_Previous.Size = new Size(127, 46);
+            but_Previous.TabIndex = 4;
+            but_Previous.Text = "Previous";
+            but_Previous.UseVisualStyleBackColor = false;
+            but_Previous.Click += but_Previous_Click;
+            // 
+            // but_Next
+            // 
+            but_Next.BackColor = Color.FromArgb(178, 8, 55);
+            but_Next.FlatStyle = FlatStyle.Flat;
+            but_Next.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            but_Next.ForeColor = Color.White;
+            but_Next.Location = new Point(968, 444);
+            but_Next.Name = "but_Next";
+            but_Next.Size = new Size(127, 46);
+            but_Next.TabIndex = 3;
+            but_Next.Text = "Next";
+            but_Next.UseVisualStyleBackColor = false;
+            but_Next.Click += but_Next_Click;
+            // 
+            // Q_Label
+            // 
+            Q_Label.AutoSize = true;
+            Q_Label.Font = new Font("Century Gothic", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Q_Label.Location = new Point(70, 150);
+            Q_Label.MaximumSize = new Size(1100, 0);
+            Q_Label.Name = "Q_Label";
+            Q_Label.Size = new Size(1097, 36);
+            Q_Label.TabIndex = 0;
+            Q_Label.Text = "Q1) Why do programmers prefer dark mode? Because light attracts bugs!😂";
+            // 
             // StudentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1445, 800);
             Controls.Add(RedFlag);
+            Controls.Add(TakeExam_Panel);
+            Controls.Add(ExamView_Panel);
             Controls.Add(but_setting);
             Controls.Add(but_Notification);
             Controls.Add(but_Close);
@@ -673,8 +855,15 @@
             Personal_info_Panel.ResumeLayout(false);
             Personal_info_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ExamView_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            TakeExam_Panel.ResumeLayout(false);
+            TakeExam_Panel.PerformLayout();
             ResumeLayout(false);
         }
+
+
 
         #endregion
 
@@ -722,6 +911,19 @@
         private TextBox Change_Gender;
         private Label DOB_Title;
         private TextBox Change_DOB;
+        private Panel ExamView_Panel;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private Button Rarrow;
+        private Button Larrow;
+        private Button LowerLarrow;
+        private Button LowerRarrow;
+        private Panel TakeExam_Panel;
+        private Label Q_Label;
+        private Button but_Previous;
+        private Button but_Next;
+
+        //Image = (Image)resources.GetObject("Project_icon.Image");
     }
 }
 

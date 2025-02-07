@@ -16,17 +16,8 @@ public static class DBConnect
     private static SqlConnection con;
 
     //Replace this ConnectionString with Yours 
-    private static string connectionString = "Data Source=YAHYA\\SQLEXPRESS;Initial Catalog=Examination System;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-    // Used only For Select Query or Procedures that Returns Select Statement ,Name Must Contain "Select" Word
-    // If Successful 
-    // Returns 1
-    // Returns Query Result as an String Array passed by referance
-    // for example if query result is (ID Name Subject) function result will be 3 rows
-    // else
-    // Returns 0
-    // and The Error Message will be in the passed by ref varable
-
-    // You don't need to intialize the Array_ofStrings before Passing it
+    private static string connectionString = "Data Source=LAPTOP-26BRTGHE\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+    
 
     public static int ProcedureQ(string storedProcedureName, string[] paramNames, object[] paramValues, out string[] Array_OfStrings)
     {
@@ -83,7 +74,16 @@ public static class DBConnect
         return 1;
     }
 
+    // Used only For Select Query or Procedures that Returns Select Statement ,Name Must Contain "Select" Word
+    // If Successful 
+    // Returns 1
+    // Returns Query Result as an String Array passed by referance
+    // for example if query result is (ID Name Subject) function result will be 3 rows
+    // else
+    // Returns 0
+    // and The Error Message will be in the passed by ref varable
 
+    // You don't need to intialize the Array_ofStrings before Passing it
     public static int SelectQ(string Query, out string[] Array_OfStrings)
     {
         string Result = string.Empty;
@@ -126,6 +126,9 @@ public static class DBConnect
 
         Array_OfStrings = Result.Split("\n");
 
+        if (Array_OfStrings[Array_OfStrings.Length - 1] == string.Empty)
+            Array.Resize(ref Array_OfStrings, Array_OfStrings.Length - 1);
+
         return 1;
     }
 
@@ -153,10 +156,7 @@ public static class DBConnect
      */
     public static string ModifyQ(string Query)
     {
-        if (!Query.Contains("select") && !Query.Contains("SELECT") && !Query.Contains("Select"))
-            return "Error : Don't use Select Statement";
-
-
+        
         try
         {
             con = new SqlConnection(connectionString);
