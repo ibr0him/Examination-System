@@ -20,7 +20,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="InstructorForm.cs">
+    <Compile Update="Instr\InstructorForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
