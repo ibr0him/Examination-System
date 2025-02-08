@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlTypes;
+﻿
 using Microsoft.Data.SqlClient;
 using Examination_System;
 using System.Diagnostics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Data;
+using Microsoft.Reporting.WinForms;
+
 
 public static class DBConnect
 {
@@ -16,9 +12,30 @@ public static class DBConnect
     private static SqlConnection con;
 
     //Replace this ConnectionString with Yours 
-    private static string connectionString = "Data Source=DESKTOP-J5GGBDS\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+    private static string connectionString = "Data Source=YAHYA\\SQLEXPRESS;Initial Catalog=Examination System;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
 
+    public static async Task LoadReportAsync(string query, ReportViewer reportViewer)
+    {
+        try
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                await conn.OpenAsync();
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                reportViewer.LocalReport.DataSources.Clear();
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("ReportData", dt));
+                reportViewer.RefreshReport();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error loading report: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
 
     public static int ProcedureQ(string storedProcedureName, string[] paramNames, object[] paramValues, out string[] Array_OfStrings)
     {
