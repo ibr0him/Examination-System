@@ -55,6 +55,7 @@
             lab_track = new Label();
             HomePanel_img = new PictureBox();
             Personal_info_Panel = new Panel();
+            Pinfo_Save = new Button();
             Speciality_Title = new Label();
             Change_Speciality = new TextBox();
             Address_Title = new Label();
@@ -81,6 +82,8 @@
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             TakeExam_Panel = new Panel();
+            Timer_TB = new TextBox();
+            lab_RemTime = new Label();
             but_Previous = new Button();
             but_Next = new Button();
             Q_Label = new Label();
@@ -457,6 +460,7 @@
             // 
             // Personal_info_Panel
             // 
+            Personal_info_Panel.Controls.Add(Pinfo_Save);
             Personal_info_Panel.Controls.Add(Speciality_Title);
             Personal_info_Panel.Controls.Add(Change_Speciality);
             Personal_info_Panel.Controls.Add(Address_Title);
@@ -480,6 +484,20 @@
             Personal_info_Panel.Size = new Size(1166, 699);
             Personal_info_Panel.TabIndex = 13;
             // 
+            // Pinfo_Save
+            // 
+            Pinfo_Save.BackColor = Color.FromArgb(178, 8, 55);
+            Pinfo_Save.FlatStyle = FlatStyle.Flat;
+            Pinfo_Save.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Pinfo_Save.ForeColor = Color.White;
+            Pinfo_Save.Location = new Point(1014, 623);
+            Pinfo_Save.Name = "Pinfo_Save";
+            Pinfo_Save.Size = new Size(127, 46);
+            Pinfo_Save.TabIndex = 18;
+            Pinfo_Save.Text = "Save";
+            Pinfo_Save.UseVisualStyleBackColor = false;
+            Pinfo_Save.Click += Pinfo_Save_Click;
+            // 
             // Speciality_Title
             // 
             Speciality_Title.AutoSize = true;
@@ -494,12 +512,12 @@
             // 
             Change_Speciality.BackColor = SystemColors.Control;
             Change_Speciality.Font = new Font("Century Gothic", 14F);
-            Change_Speciality.Enabled = false;
             Change_Speciality.ForeColor = SystemColors.Desktop;
             Change_Speciality.Location = new Point(457, 627);
             Change_Speciality.Name = "Change_Speciality";
             Change_Speciality.Size = new Size(273, 30);
             Change_Speciality.TabIndex = 16;
+            Change_Speciality.Enter += PinfoTB_Selected;
             // 
             // Address_Title
             // 
@@ -514,13 +532,13 @@
             // Change_Address
             // 
             Change_Address.BackColor = SystemColors.Control;
-            Change_Address.Enabled = false;
             Change_Address.Font = new Font("Century Gothic", 14F);
             Change_Address.ForeColor = SystemColors.Desktop;
             Change_Address.Location = new Point(48, 627);
             Change_Address.Name = "Change_Address";
             Change_Address.Size = new Size(273, 30);
             Change_Address.TabIndex = 14;
+            Change_Address.Enter += PinfoTB_Selected;
             // 
             // Type_Title
             // 
@@ -577,13 +595,13 @@
             // Change_DOB
             // 
             Change_DOB.BackColor = SystemColors.Control;
-            Change_DOB.Enabled = false;
             Change_DOB.Font = new Font("Century Gothic", 14F);
             Change_DOB.ForeColor = SystemColors.Desktop;
             Change_DOB.Location = new Point(50, 519);
             Change_DOB.Name = "Change_DOB";
             Change_DOB.Size = new Size(273, 30);
             Change_DOB.TabIndex = 8;
+            Change_DOB.Enter += PinfoTB_Selected;
             // 
             // Email_Title
             // 
@@ -619,13 +637,13 @@
             // Change_Name
             // 
             Change_Name.BackColor = SystemColors.Control;
-            Change_Name.Enabled = false;
             Change_Name.Font = new Font("Century Gothic", 14F);
             Change_Name.ForeColor = SystemColors.Desktop;
             Change_Name.Location = new Point(459, 409);
             Change_Name.Name = "Change_Name";
             Change_Name.Size = new Size(273, 30);
             Change_Name.TabIndex = 4;
+            Change_Name.Enter += PinfoTB_Selected;
             // 
             // ID_Title
             // 
@@ -773,6 +791,8 @@
             // 
             // TakeExam_Panel
             // 
+            TakeExam_Panel.Controls.Add(Timer_TB);
+            TakeExam_Panel.Controls.Add(lab_RemTime);
             TakeExam_Panel.Controls.Add(but_Previous);
             TakeExam_Panel.Controls.Add(but_Next);
             TakeExam_Panel.Controls.Add(Q_Label);
@@ -780,6 +800,28 @@
             TakeExam_Panel.Name = "TakeExam_Panel";
             TakeExam_Panel.Size = new Size(1198, 711);
             TakeExam_Panel.TabIndex = 29;
+            // 
+            // Timer_TB
+            // 
+            Timer_TB.BackColor = Color.Lime;
+            Timer_TB.BorderStyle = BorderStyle.FixedSingle;
+            Timer_TB.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Timer_TB.Location = new Point(955, 54);
+            Timer_TB.Name = "Timer_TB";
+            Timer_TB.Size = new Size(137, 41);
+            Timer_TB.TabIndex = 7;
+            Timer_TB.Text = "00:00:00";
+            Timer_TB.TextAlign = HorizontalAlignment.Center;
+            // 
+            // lab_RemTime
+            // 
+            lab_RemTime.AutoSize = true;
+            lab_RemTime.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lab_RemTime.Location = new Point(712, 54);
+            lab_RemTime.Name = "lab_RemTime";
+            lab_RemTime.Size = new Size(237, 33);
+            lab_RemTime.TabIndex = 6;
+            lab_RemTime.Text = "Remaining Time :";
             // 
             // but_Previous
             // 
@@ -827,6 +869,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1445, 800);
             Controls.Add(RedFlag);
+            Controls.Add(Personal_info_Panel);
             Controls.Add(TakeExam_Panel);
             Controls.Add(ExamView_Panel);
             Controls.Add(but_setting);
@@ -838,7 +881,6 @@
             Controls.Add(RedBar);
             Controls.Add(SidePanel);
             Controls.Add(HomePanel);
-            Controls.Add(Personal_info_Panel);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
@@ -922,6 +964,9 @@
         private Label Q_Label;
         private Button but_Previous;
         private Button but_Next;
+        private Label lab_RemTime;
+        private TextBox Timer_TB;
+        private Button Pinfo_Save;
 
         //Image = (Image)resources.GetObject("Project_icon.Image");
     }

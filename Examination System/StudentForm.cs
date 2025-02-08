@@ -16,6 +16,7 @@ using Microsoft.VisualBasic.Devices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using RadioButton = System.Windows.Forms.RadioButton;
 using System.Web;
+using System.Timers;
 
 
 namespace Examination_System
@@ -41,6 +42,12 @@ namespace Examination_System
         private static Panel[] QChoices_Panel;
         private static int Exam_id;
         private static int Crs_ID;
+
+        // Exam Timer
+        private System.Timers.Timer ExamTimer;
+        private int RemTime;
+        private int[] Timer_Color;
+        private int ExamTotalTime;
 
 
 
@@ -87,6 +94,8 @@ namespace Examination_System
             Change_Type.Text = " " + Stud[6];
             Change_Address.Text = " " + Stud[7];
             Change_Speciality.Text = " " + Stud[8];
+            Pinfo_Save.Visible = false;
+
 
         }
 
@@ -308,7 +317,7 @@ namespace Examination_System
                     Note1.Margin = new Padding(4, 0, 4, 0);
                     Note1.Name = "Note1";
                     Note1.Size = new Size(30, 33);
-                    Note1.Text = "(There Is No Taken Exams Grades 😢)";
+                    Note1.Text = "( There Is No Taken Exams Grades 😢 )";
                     Upper_Ex[0].Controls.Add(Note1);
                     Note1.Location = new Point(((Upper_Ex[0].Width - Note1.Width) / 2), ((Upper_Ex[0].Height - Note1.Height) / 2));
 
@@ -448,7 +457,7 @@ namespace Examination_System
                     Note2.Margin = new Padding(4, 0, 4, 0);
                     Note2.Name = "Note2";
                     Note2.Size = new Size(30, 33);
-                    Note2.Text = "( There Is No OutGoing Exams Grades 🎉 )";
+                    Note2.Text = "( There Is No OutGoing Exams 🎉 )";
                     Lower_Ex[0].Controls.Add(Note2);
                     Note2.Location = new Point(((Lower_Ex[0].Width - Note2.Width) / 2), ((Lower_Ex[0].Height - Note2.Height) / 2));
 
@@ -822,8 +831,110 @@ namespace Examination_System
             but_Next.Location = new Point((Q_Label.Location.X + Q_Label.Width - but_Next.Width), QChoices_Panel[0].Location.Y + QChoices_Panel[0].Height + 60);
             but_Previous.Visible = false;
 
+            // Timer setup
+            ExamTimer = new System.Timers.Timer();
+            ExamTimer.Interval = 1000;
+            ExamTimer.Elapsed += OnTimeEvent;
+            ExamTimer.Start();
+            Timer_Color = new int[] { 0, 255, 0 };
+            Query = $@"Select Duration
+                        From Exam
+                        Where ID={Exam_id}";
+            SelectQ(Query, out Output);
+            ExamTotalTime = int.Parse(Output[0]);
+            RemTime = ExamTotalTime * 60;
+            ExamTotalTime = RemTime;
+
+
+            // update Timer Label
+
+            Timer_TB.Text = $"{(RemTime / 3600):D2}:{((RemTime % 3600) / 60):D2}:{(RemTime % 60):D2}";
+
+
 
         }
+
+        private void OnTimeEvent(object? sender, ElapsedEventArgs e)
+        {
+
+            if (RemTime > 0)
+            {
+                RemTime--;
+
+                Timer_TB.Invoke(new Action(() =>
+                {
+                    Timer_TB.Text = $"{(RemTime / 3600):D2}:{((RemTime % 3600) / 60):D2}:{(RemTime % 60):D2}";
+                    Timer_TB.BackColor = (RemTime % 2 == 0)
+                        ? Color.FromArgb(240, 240, 240)
+                        : Color.FromArgb(Timer_Color[0], Timer_Color[1], Timer_Color[2]);
+                }));
+
+                if ((RemTime > (0.34 * ExamTotalTime)) && ((0.67 * ExamTotalTime) > RemTime))
+                    Timer_Color = new int[] { 247, 247, 0 };
+                if (RemTime < (0.34 * ExamTotalTime))
+                    Timer_Color = new int[] { 255, 0, 0 };
+            }
+            else
+            {
+
+                string query = "Insert into Answers(St_ID,Exam_ID,Q_ID,Answer) Values";
+                for (int i = 0; i < Questions.Length; i++)
+                    if (i < Questions.Length - 1)
+                        query += $"\n({Student[0]},{Exam_id},{Q_IDs[i]},'{User_Ans[i]}'),";
+                    else
+                        query += $"\n({Student[0]},{Exam_id},{Q_IDs[i]},'{User_Ans[i]}');";
+
+                ModifyQ(query);
+
+                ModifyQ($"ExamCorrection {Student[0]},{Exam_id},{Crs_ID}");
+
+                Timer_TB.Invoke(new Action(() =>
+                {
+                    TakeExam_Panel.Visible = false;
+                    ExamView_Panel.Visible = true;
+
+                    this.Controls.Clear();  // Clear all controls
+                    this.InitializeComponent();  // Reload the form’s components
+
+                    but_Exams.PerformClick();
+                    string[] temp;
+                    SelectQ(@$"Select Count(T.Crs_ID) 
+                        From Student S join Track_Courses T 
+                        on S.Track_ID = T.Track_ID 
+                        Group By S.ID Having ID ={Student[0]}", out temp);
+
+                    Clab_ID.Text = Student[0];
+                    Clab_crs.Text = temp[0];
+
+                    SelectQ(@$"Select T.Name From Student S , Track T 
+                     Where S.Track_ID = T.ID AND S.ID = {Student[0]}", out temp);
+                    Clab_track.Text = temp[0];
+                    Change_ID.Text = " " + Student[0];
+                    Change_Name.Text = " " + Student[1];
+                    Change_Email.Text = " " + Student[3];
+                    Change_DOB.Text = " " + Student[4];
+                    Change_Gender.Text = " " + Student[5];
+                    Change_Type.Text = " " + Student[6];
+                    Change_Address.Text = " " + Student[7];
+                    Change_Speciality.Text = " " + Student[8];
+
+                    but_Home.Enabled = true;
+                    but_FB.Enabled = true;
+                    but_instagram.Enabled = true;
+                    but_Logout.Enabled = true;
+                    but_Notification.Enabled = true;
+                    but_Pinfo.Enabled = true;
+                    but_setting.Enabled = true;
+                    but_twitter.Enabled = true;
+                    but_Exams.Enabled = true;
+                    but_Close.Enabled = true;
+                }));
+                ExamTimer.Stop();
+
+
+            }
+        }
+
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton selectedRadio = sender as RadioButton;
@@ -837,12 +948,14 @@ namespace Examination_System
 
         private void but_Next_Click(object sender, EventArgs e)
         {
-            if (Q_index == Questions.Length - 1)
+            if (but_Next.Text == "Submit")
             {
                 DialogResult result = MessageBox.Show("Are You Sure You Want To Submit Exam Now ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
+                    ExamTimer.Stop();
+
                     TakeExam_Panel.Visible = false;
 
                     ExamView_Panel.Visible = true;
@@ -924,8 +1037,6 @@ namespace Examination_System
 
             }
 
-
-
         }
 
         private void but_Previous_Click(object sender, EventArgs e)
@@ -952,9 +1063,71 @@ namespace Examination_System
             }
         }
 
-        private void Change_Speciality_TextChanged(object sender, EventArgs e)
+        private void Pinfo_Save_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Change_Speciality.Text);
+            // vaildation DOB
+
+            if (Student[4] != Change_DOB.Text)
+            {
+                Student[4]=Change_DOB.Text.Trim();
+
+                string temp = Student[4];
+                int count = 0;
+               
+                for (int i = 0; i < temp.Length; i++)
+                    if (temp[i]=='/')
+                        count++;
+                
+                if (count != 2)
+                { 
+                    MessageBox.Show("Please Enter The DOB in This Formate 'DD/MM/YYY'", 
+                        "Wrong DOB Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    string[] Num = temp.Split('/');
+                    for (int i = 0; i < Num.Length; i++)
+                        if (!int.TryParse(Num[i], out int number))
+                        {
+                            MessageBox.Show("DOB Only Accepts Numbers With Special Charater '/ '",
+                                "Wrong DOB Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return ;
+                        }
+                    
+                }
+                
+            }
+
+            Student[1] = Change_Name.Text.Trim();
+            Student[7] = Change_Address.Text.Trim();
+            Student[8] = Change_Speciality.Text.Trim();
+
+            string result=string.Empty;
+            string Query1 = $@"Update Users
+                            Set Name = '{Student[1]}',DOB ='{Student[4]}',Address='{Student[7]}'
+                            Where ID = {Student[0]}";
+            
+            string Query2 = $@"Update Student
+                        Set Specialist ='{Student[8]}'
+                        Where ID = {Student[0]}";
+            
+            result = $"{ModifyQ(Query1)} {ModifyQ(Query2)}";
+
+            if (result.Contains("Error"))
+            {
+                MessageBox.Show(result, "Wrong Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+                MessageBox.Show("Information Has Been Updated Successfully");
+            
+            Pinfo_Save.Visible = false;
+        }
+
+        private void PinfoTB_Selected(object sender, EventArgs e)
+        {
+            Pinfo_Save.Visible=true;
         }
     }
 }

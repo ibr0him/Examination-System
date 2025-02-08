@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examination_System
+namespace Examination_System.Instr
 {
     public class Course
     {

@@ -47,7 +47,8 @@ namespace Examination_System
                     SelectQ(@$"Select U.*,S.Specialist From Users U, Student S 
                             Where U.Email ='{email}' AND U.Password = '{pass}'
                             And U.ID=S.ID", out Student);
-
+                    
+                    Student[4]=Student[4].Split(" ")[0];
                     StudentForm main = new StudentForm(Student);
                     this.Hide();
                     main.Show();
@@ -58,7 +59,7 @@ namespace Examination_System
                     SelectQ(@$"Select U.*,I.Salary From Users U, Ins I 
                         Where U.Email ='{email}' AND U.Password = '{pass}'
                         And U.ID=I.ID", out Teachers);
-
+                    Teachers[4]=Teachers[4].Split(" ")[0];
                     InstructorForm teach = new InstructorForm(Teachers);
                     this.Hide();
                     teach.Show();
