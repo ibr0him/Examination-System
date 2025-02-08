@@ -36,7 +36,6 @@ namespace Examination_System
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             SidePanel = new Panel();
-            label2 = new Label();
             button1 = new Button();
             but_Logout = new Button();
             Highlighter = new Panel();
@@ -96,7 +95,9 @@ namespace Examination_System
             Change_ID = new TextBox();
             view_exams_panel = new Panel();
             panel1 = new Panel();
-            label3 = new Label();
+            reportPanel = new Panel();
+            titleLabel = new Label();
+            viewReportButton = new Button();
             SidePanel.SuspendLayout();
             Report_panel.SuspendLayout();
             gen_exam_panel.SuspendLayout();
@@ -107,7 +108,6 @@ namespace Examination_System
             ((System.ComponentModel.ISupportInitialize)HomePanel_img).BeginInit();
             Personal_info_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // SidePanel
@@ -125,17 +125,6 @@ namespace Examination_System
             SidePanel.Name = "SidePanel";
             SidePanel.Size = new Size(358, 1334);
             SidePanel.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.CausesValidation = false;
-            label2.Font = new Font("Century Gothic", 28F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(709, 47);
-            label2.Name = "label2";
-            label2.Size = new Size(197, 69);
-            label2.TabIndex = 14;
-            label2.Text = "label2";
             // 
             // button1
             // 
@@ -248,11 +237,11 @@ namespace Examination_System
             // labelReports
             // 
             labelReports.AutoSize = true;
-            labelReports.Font = new Font("Century Gothic", 24F);
+            labelReports.Font = new Font("Century Gothic", 28F, FontStyle.Bold);
             labelReports.Location = new Point(622, 58);
             labelReports.Margin = new Padding(4, 0, 4, 0);
             labelReports.Name = "labelReports";
-            labelReports.Size = new Size(197, 58);
+            labelReports.Size = new Size(229, 66);
             labelReports.TabIndex = 1;
             labelReports.Text = "Reports";
             // 
@@ -883,21 +872,33 @@ namespace Examination_System
             // 
             // panel1
             // 
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
             panel1.Location = new Point(361, 132);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1644, 860);
+            panel1.Size = new Size(1644, 1202);
             panel1.TabIndex = 28;
             // 
-            // label3
+            // reportPanel
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(778, 212);
-            label3.Name = "label3";
-            label3.Size = new Size(59, 25);
-            label3.TabIndex = 15;
-            label3.Text = "label3";
+            reportPanel.Location = new Point(358, 119);
+            reportPanel.Name = "reportPanel";
+            reportPanel.Size = new Size(1702, 1215);
+            reportPanel.TabIndex = 29;
+            // 
+            // titleLabel
+            // 
+            titleLabel.Location = new Point(0, 0);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new Size(100, 23);
+            titleLabel.TabIndex = 0;
+            // 
+            // viewReportButton
+            // 
+            viewReportButton.Location = new Point(0, 0);
+            viewReportButton.Name = "viewReportButton";
+            viewReportButton.Size = new Size(75, 23);
+            viewReportButton.TabIndex = 0;
+            viewReportButton.Click += ViewReportButton_Click;
+            
             // 
             // InstructorForm
             // 
@@ -905,6 +906,7 @@ namespace Examination_System
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2064, 1334);
             Controls.Add(RedFlag);
+            Controls.Add(reportPanel);
             Controls.Add(panel1);
             Controls.Add(HomePanel);
             Controls.Add(RedBar);
@@ -939,8 +941,6 @@ namespace Examination_System
             Personal_info_Panel.ResumeLayout(false);
             Personal_info_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1006,8 +1006,11 @@ namespace Examination_System
         private Panel view_exams_panel;
         private Panel Report_panel;
         private Panel panel1;
-        private Label label2;
-        private Label label3;
+        private Label titleLabel;
+        private Button viewReportButton;
+        private ReportViewer reportViewer;
+        private TextBox[] parameterInputs;
+        private Panel reportPanel;
 
         public ReportViewer reportViewer1 { get; private set; }
 
