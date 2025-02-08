@@ -21,29 +21,7 @@ namespace Examination_System
       
         private void ViewExams(string courseName, int courseId)
         {
-            examList.Clear();
-            view_exams_panel.Controls.Clear();
-            view_exams_panel.AutoScroll = true;
-            RedBar.Hide();
-            RedFlag.Hide();
-            view_exams_panel.Dock = DockStyle.Fill;
-            view_exams_panel.BringToFront();
            
-
-            Label titleLabel = new Label
-            {
-                Text = $"Exams for {courseName}",
-                Font = new Font("Arial", 14, FontStyle.Bold),
-                TextAlign = ContentAlignment.MiddleCenter,
-                Width = view_exams_panel.Width,
-                Height = 40,
-                Dock=DockStyle.Top,
-                BackColor = Color.DarkRed,
-                ForeColor = Color.White,
-            };
-
-
-            view_exams_panel.Controls.Add(titleLabel);
 
             ProcedureQ("GetExamsByCourse", new string[] { "@Crs_id" }, new object[] { courseId }, out string[] examArray);
 
@@ -53,6 +31,29 @@ namespace Examination_System
             }
             else
             {
+                examList.Clear();
+                view_exams_panel.Controls.Clear();
+                view_exams_panel.AutoScroll = true;
+                RedBar.Hide();
+                RedFlag.Hide();
+                view_exams_panel.Dock = DockStyle.Fill;
+                view_exams_panel.BringToFront();
+
+
+                Label titleLabel = new Label
+                {
+                    Text = $"Exams for {courseName}",
+                    Font = new Font("Arial", 14, FontStyle.Bold),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Width = view_exams_panel.Width,
+                    Height = 40,
+                    Dock = DockStyle.Top,
+                    BackColor = Color.DarkRed,
+                    ForeColor = Color.White,
+                };
+
+
+                view_exams_panel.Controls.Add(titleLabel);
                 int buttonsPerRow = 5;
                 int buttonWidth = 150;
                 int buttonHeight = 150;
@@ -94,7 +95,7 @@ namespace Examination_System
                     {
                         Width = buttonWidth,
                         Height = buttonHeight,
-                        Image = Image.FromFile($"D:\\Work\\iti\\Courses\\database\\database2\\project\\Examination-System-master\\result_Final.PNG"),
+                        Image = (Image)resources1.GetObject("pictureBox2.Image"),
                         SizeMode = PictureBoxSizeMode.Zoom,
                         Cursor = Cursors.Hand
                     };
