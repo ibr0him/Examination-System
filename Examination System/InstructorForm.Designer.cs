@@ -898,7 +898,11 @@ namespace Examination_System
             viewReportButton.Size = new Size(75, 23);
             viewReportButton.TabIndex = 0;
             viewReportButton.Click += ViewReportButton_Click;
-            
+            //
+            ReportViewer reportViewer = new ReportViewer
+            {
+                Dock = DockStyle.Fill
+            };
             // 
             // InstructorForm
             // 

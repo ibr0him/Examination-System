@@ -243,6 +243,7 @@ namespace Examination_System
                 reportPanel.Controls.Add(paramLabel);
                 reportPanel.Controls.Add(textBox);
                 parameterInputs[i] = textBox;
+                
             }
 
             // Adjust button size and position
@@ -253,6 +254,7 @@ namespace Examination_System
             viewReportButton.Top = topMargin + (paramCount * spacing) + 20;
 
             reportPanel.Controls.Add(viewReportButton);
+            reportPanel.Controls.Add(reportViewer);
         }
 
 
