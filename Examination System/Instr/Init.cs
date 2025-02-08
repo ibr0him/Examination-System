@@ -20,7 +20,7 @@ namespace Examination_System
 
         List<Course> coursesList = new List<Course>();
         List<Exam> examList = new List<Exam>();
-
+        System.ComponentModel.ComponentResourceManager resources1 = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
         // To Transfer Teacher's Personal Data
         private static string[] Teachers;
         public InstructorForm(string[] Teacher)
