@@ -11,6 +11,8 @@ using System.Data.Sql;
 using static DBConnect;
 using System.Diagnostics;
 using Microsoft.VisualBasic.Devices;
+using Microsoft.Reporting.WinForms;
+using Microsoft.Data.SqlClient;
 
 namespace Examination_System
 {
@@ -21,7 +23,7 @@ namespace Examination_System
         List<Exam> examList = new List<Exam>();
         private List<string> imagePaths = new List<string>
     {
-        "D:\\Work\\iti\\Courses\\database\\database2\\project\\Examination-System-master\\result_Final.PNG"
+        "C:\\Users\\AA\\source\\repos\\Examination-System\\Examination System\\Resources\\result_Final.PNG"
 
     };
 
@@ -107,6 +109,7 @@ namespace Examination_System
             Highlighter.Height = but_Pinfo.Height;
             Highlighter.Top = but_Pinfo.Top;
             HomePanel.Visible = false;
+            gen_exam_panel.Visible = false;
             Personal_info_Panel.Visible = true;
 
         }
@@ -117,8 +120,106 @@ namespace Examination_System
             Highlighter.Top = but_GenExams.Top;
             HomePanel.Visible = false;
             Personal_info_Panel.Visible = false;
-            gen_exam_panel.Visible = true; 
+            gen_exam_panel.Visible = true;
         }
+        private void but_Reports_Click(object sender, EventArgs e)
+        {
+            // Adjust highlighter position
+            Highlighter.Height = button1.Height;
+            Highlighter.Top = button1.Top;
+
+            // Show only the report panel
+            HomePanel.Visible = false;
+            Personal_info_Panel.Visible = false;
+            gen_exam_panel.Visible = false;
+            panel1.Visible = true;
+
+            // Create buttons dynamically
+            CreateButtons();
+        }
+
+        private void CreateButtons()
+        {
+            // Clear existing buttons to avoid duplication
+            panel1.Controls.Clear();
+
+            string[] buttonNames =
+            {
+        "Get Students per Track",
+        "Get Student Grade",
+        "Get Instructor Courses",
+        "Get Topics per Track",
+        "Get Exam Questions",
+        "Get Student Answers"
+    };
+
+            EventHandler[] actions =
+            {
+        GetStudentsPerTrack,
+        GetStudentGrade,
+        GetInstructorCourses,
+        GetTopicsPerTrack,
+        GetExamQuestions,
+        GetStudentAnswers
+    };
+
+            int rows = 2;
+            int cols = 3;
+            int buttonWidth = 150;
+            int buttonHeight = 40;
+            int padding = 15;
+
+            for (int i = 0; i < buttonNames.Length; i++)
+            {
+                Button btn = new Button
+                {
+                    Text = buttonNames[i],
+                    Size = new System.Drawing.Size(buttonWidth, buttonHeight),
+                    Location = new System.Drawing.Point((i % cols) * (buttonWidth + padding), (i / cols) * (buttonHeight + padding)),
+                    BackColor = System.Drawing.Color.LightBlue,
+                    Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold),
+                    FlatStyle = FlatStyle.Flat
+                };
+
+                // Attach corresponding event handler
+                btn.Click += actions[i];
+
+                // Add button to panel
+                panel1.Controls.Add(btn);
+            }
+        }
+
+        // Example placeholders for button functionalities
+        private void GetStudentsPerTrack(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fetching students per track...");
+        }
+
+        private void GetStudentGrade(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fetching student grades...");
+        }
+
+        private void GetInstructorCourses(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fetching instructor courses...");
+        }
+
+        private void GetTopicsPerTrack(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fetching topics per track...");
+        }
+
+        private void GetExamQuestions(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fetching exam questions...");
+        }
+
+        private void GetStudentAnswers(object sender, EventArgs e)
+        {
+            MessageBox.Show("Fetching student answers...");
+        }
+
 
         private void but_Logout_Click(object sender, EventArgs e)
         {
@@ -198,7 +299,7 @@ namespace Examination_System
             examList.Clear();
             view_exams_panel.Controls.Clear();
             ProcedureQ("GetExamsByCourse", new string[] { "@Crs_id" }, new object[] { courseId }, out string[] examArray);
-            
+
             if (examArray.Length % 5 != 0)
             {
                 MessageBox.Show("No Exams For This Course.");
@@ -209,7 +310,7 @@ namespace Examination_System
                 int buttonWidth = 150;
                 int buttonHeight = 150;
                 int spacingX = 50; // Horizontal spacing
-                int spacingY =50; // Vertical spacing
+                int spacingY = 50; // Vertical spacing
 
                 for (int i = 0; i < examArray.Length; i += 5)
                 {
@@ -225,7 +326,7 @@ namespace Examination_System
                     gen_exam_panel.Visible = false;
                     view_exams_panel.Visible = true;
                 }
-                for(int i = 0; i < examList.Count; i++)
+                for (int i = 0; i < examList.Count; i++)
                 {
 
                     int row = (i / buttonsPerRow) % 2;
@@ -245,7 +346,7 @@ namespace Examination_System
                     {
                         Width = buttonWidth,
                         Height = buttonHeight,
-                        Image = Image.FromFile($"D:\\Work\\iti\\Courses\\database\\database2\\project\\Examination-System-master\\result_Final.PNG"), // Change to your image path
+                        Image = Image.FromFile("C:\\Users\\AA\\source\\repos\\Examination-System\\Examination System\\Resources\\result_Final.PNG"), // Change to your image path
                         SizeMode = PictureBoxSizeMode.AutoSize, // Ensure it fits
                         Cursor = Cursors.Hand
                     };
@@ -268,9 +369,57 @@ namespace Examination_System
                     view_exams_panel.Controls.Add(panel);
                 }
             }
-        
+
+        }
+        private void LoadReport()
+        {
+            // Set processing mode
+            reportViewer1.ProcessingMode = ProcessingMode.Local;
+            reportViewer1.LocalReport.ReportPath = "C:\\Users\\AA\\source\\repos\\WindowsFormsApp1\\WindowsFormsApp1\\Report1.rdlc"; // Ensure this file is added in the project
+
+            DataTable dt = GetDataFromDatabase();
+            ReportDataSource rds = new ReportDataSource("DataSet1", dt);
+
+            // Clear existing data sources and add the new one
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.DataSources.Add(rds);
+
+            // Refresh the report
+            reportViewer1.RefreshReport();
+        }
+        private DataTable GetDataFromDatabase()
+        {
+            DataTable dt = new DataTable();
+
+            // Connection string - Update with your database details
+            string connectionString = "Data Source=DESKTOP-J5GGBDS\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;";
+
+            // SQL Query - Adjust to match your database table structure
+            string query = "Exec ReportTrackStudents @Track=2";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        conn.Open();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message);
+            }
+
+            return dt;
         }
 
+        private void InstructorForm_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

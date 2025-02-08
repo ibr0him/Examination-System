@@ -16,7 +16,7 @@ public static class DBConnect
     private static SqlConnection con;
 
     //Replace this ConnectionString with Yours 
-    private static string connectionString = "Data Source=LAPTOP-26BRTGHE\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+    private static string connectionString = "Data Source=DESKTOP-J5GGBDS\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
     
 
     public static int ProcedureQ(string storedProcedureName, string[] paramNames, object[] paramValues, out string[] Array_OfStrings)
