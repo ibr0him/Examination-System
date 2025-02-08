@@ -156,11 +156,11 @@ namespace Examination_System
             titleLabel.Text = title;
             titleLabel.Font = new System.Drawing.Font("Arial", 28, System.Drawing.FontStyle.Bold);
             titleLabel.TextAlign = ContentAlignment.MiddleCenter;
-            titleLabel.AutoSize = false;
+            titleLabel.AutoSize = true;
             titleLabel.Width = reportPanel.Width;
             titleLabel.Top = 200;
             titleLabel.Height = 100;
-            titleLabel.Left = reportPanel.Width / 2;
+            //titleLabel.Left = reportPanel.Width / 2;
 
             reportPanel.Controls.Add(titleLabel);
 
