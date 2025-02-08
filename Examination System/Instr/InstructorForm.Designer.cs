@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Microsoft.Reporting.WinForms;
 
 namespace Examination_System
 {
@@ -90,6 +91,14 @@ namespace Examination_System
             pictureBox1 = new PictureBox();
             Change_ID = new TextBox();
             view_exams_panel = new Panel();
+            //////////////////////////////////////////////////////////
+            ///Aziz
+            labelReports = new Label();
+            panel1 = new Panel();
+            reportPanel = new Panel();
+            titleLabel = new Label();
+            viewReportButton = new Button();
+            /////////////////////////////////////////////////////////
             SidePanel.SuspendLayout();
             gen_exam_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -136,6 +145,7 @@ namespace Examination_System
             button1.Text = " Reports";
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
             button1.UseVisualStyleBackColor = true;
+            button1.Click += but_Reports_Click;
             // 
             // but_Logout
             // 
@@ -833,6 +843,50 @@ namespace Examination_System
             view_exams_panel.Size = new Size(1194, 720);
             view_exams_panel.TabIndex = 18;
             // 
+            ////////////////////////////////////////////////////////////////
+            ///Aziz
+            // labelReports
+            // 
+            labelReports.AutoSize = true;
+            labelReports.Font = new Font("Century Gothic", 28F, FontStyle.Bold);
+            labelReports.Location = new Point(622, 58);
+            labelReports.Margin = new Padding(4, 0, 4, 0);
+            labelReports.Name = "labelReports";
+            labelReports.Size = new Size(229, 66);
+            labelReports.TabIndex = 1;
+            labelReports.Text = "Reports";
+            //
+            // panel1
+            // 
+            panel1.Location = new Point(361, 132);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1644, 1202);
+            panel1.TabIndex = 28;
+            // 
+            // reportPanel
+            // 
+            reportPanel.Location = new Point(358, 119);
+            reportPanel.Name = "reportPanel";
+            reportPanel.Size = new Size(1702, 1215);
+            reportPanel.TabIndex = 29;
+            // 
+            // titleLabel
+            // 
+            titleLabel.Location = new Point(0, 0);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new Size(100, 23);
+            titleLabel.TabIndex = 0;
+            // 
+            // viewReportButton
+            // 
+            viewReportButton.Location = new Point(0, 0);
+            viewReportButton.Name = "viewReportButton";
+            viewReportButton.Size = new Size(75, 23);
+            viewReportButton.TabIndex = 0;
+            viewReportButton.Click += ViewReportButton_Click;
+
+            ///////////////////////////////////////////////////////////////
+            ///
             // InstructorForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -932,6 +986,16 @@ namespace Examination_System
         private DataGridViewButtonColumn viewExamsButton;
         private Panel view_exams_panel;
         private Button Pinfo_Save;
+        //////////////////////////////////////////////////////////////
+        ///Aziz
+        private Label labelReports;
+        private Panel panel1;
+        private Label titleLabel;
+        private Button viewReportButton;
+        private ReportViewer reportViewer;
+        private TextBox[] parameterInputs;
+        private Panel reportPanel;
+        /////////////////////////////////////////////////////////////
     }
 }
 
