@@ -129,17 +129,15 @@ namespace Examination_System
             SetPanelVisibility(reportPanel);
             reportPanel.Controls.Clear();
 
-            titleLabel = new Label
-            {
-                Text = title,
-                Font = new Font("Arial", 28, FontStyle.Bold),
-                TextAlign = ContentAlignment.MiddleCenter,
-                AutoSize = false,
-                Width = reportPanel.Width,
-                Height = 100,
-                Top = 200,
-                Left = (reportPanel.Width - reportPanel.Width) / 2
-            };
+            // Center title at the top with a margin-top of 100px
+            titleLabel.Text = title;
+            titleLabel.Font = new System.Drawing.Font("Arial", 28, System.Drawing.FontStyle.Bold);
+            titleLabel.TextAlign = ContentAlignment.MiddleCenter;
+            titleLabel.AutoSize = true;
+            titleLabel.Width = reportPanel.Width;
+            titleLabel.Top = 200;
+            titleLabel.Height = 100;
+            //titleLabel.Left = reportPanel.Width / 2;
 
             reportPanel.Controls.Add(titleLabel);
             currentProcedure = procedureName;
