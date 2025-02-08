@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.Sql;
+﻿
 using static DBConnect;
 using System.Diagnostics;
-using Microsoft.VisualBasic.Devices;
-using Examination_System.Instr;
-using Microsoft.Data.SqlClient;
-using Microsoft.Reporting.WinForms;
+using System.Net.Http.Headers;
+
 
 namespace Examination_System
 {
     public partial class InstructorForm : Form
     {
+       
         // For Making the form Dragable on dragging Certain Forms
         private bool Win_dragging = false;
         private Point Win_dragCursorPoint;
@@ -138,8 +128,9 @@ namespace Examination_System
             HomePanel.Visible = false;
             Personal_info_Panel.Visible = false;
             gen_exam_panel.Visible = false;
-            panel1.Visible = false;
+            view_exams_panel.Visible = false;
             reportPanel.Visible = false;
+            panel1.Visible = false;
 
             activePanel.Visible = true;
         }
@@ -209,35 +200,42 @@ namespace Examination_System
 
         private async void ViewReportButton_Click(object sender, EventArgs e)
         {
-            string query = $"EXEC {currentProcedure} ";
-            query += string.Join(", ", parameterInputs.Select(p => $"'{p.Text}'"));
+            reportPanel.Visible = false;
+            string reportUrl = "http://yahya/ReportServer?/Report1&rs:Format=PDF&Track=1";
+            string pdfPath = Path.Combine(Path.GetTempPath(), "Report.pdf");
 
-            //await LoadReportAsync(query);
-        }
-
-        private async Task LoadReportAsync(string query)
-        {
-            string connectionString = "Data Source=DESKTOP-J5GGBDS\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
-
-            try
+            using (HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true })
+            using (HttpClient client = new HttpClient(handler))
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
 
-                    reportViewer.LocalReport.DataSources.Clear();
-                    reportViewer.LocalReport.DataSources.Add(new ReportDataSource("ReportData", dt));
-                    reportViewer.RefreshReport();
+                try
+                {
+                    // Download the PDF
+                    byte[] reportData = await client.GetByteArrayAsync(reportUrl);
+                    await File.WriteAllBytesAsync(pdfPath, reportData);
+
+                    // Ensure WebView2 is fully initialized
+                    if (webView.CoreWebView2 == null)
+                    {
+                        await webView.EnsureCoreWebView2Async();
+                    }
+
+                    // Load the PDF file into WebView2
+                    webView.CoreWebView2.Navigate($"file:///{pdfPath.Replace("\\", "/")}");
+                }
+                catch (HttpRequestException ex)
+                {
+                    MessageBox.Show($"Error downloading report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading report: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
+
+
 
         // Event Handlers
         private void GetStudentsPerTrack(object sender, EventArgs e) { ShowReportPanel("Get Students per Track", "ReportTrackStudents", 1, new[] { "Track ID" }); }
