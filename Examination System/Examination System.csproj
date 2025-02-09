@@ -13,6 +13,7 @@
     <PackageReference Include="Corrected.Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1358.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1652.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2957.106" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 

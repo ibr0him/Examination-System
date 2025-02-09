@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.Sql;
-using static DBConnect;
-using System.Diagnostics;
-using Microsoft.VisualBasic.Devices;
+﻿using static DBConnect;
 using Examination_System.Instr;
 
 namespace Examination_System
@@ -20,12 +8,42 @@ namespace Examination_System
 
         List<Course> coursesList = new List<Course>();
         List<Exam> examList = new List<Exam>();
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView;
+
+        private void InitializePdfViewer()
+        {
+            webView = new Microsoft.Web.WebView2.WinForms.WebView2
+            {
+                Source = new Uri("about:blank"), // Initialize with a blank page
+                Visible = false
+            };
+
+            // Set initial size to match parent panel
+            webView.Size = this.ClientSize;
+            webView.Location = gen_exam_panel.Location;
+
+            // Handle resizing dynamically
+            this.SizeChanged += (sender, e) =>
+            {
+                webView.Size = gen_exam_panel.Size;
+            };
+            // Add the WebView2 control to the form/container
+            this.Controls.Add(webView);
+
+            // Initialize the CoreWebView2 environment
+            webView.EnsureCoreWebView2Async();
+        }
+
+
         System.ComponentModel.ComponentResourceManager resources1 = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
         // To Transfer Teacher's Personal Data
         private static string[] Teachers;
         public InstructorForm(string[] Teacher)
         {
+
             InitializeComponent();
+            InitializePdfViewer();
+
 
             string[] temp;
 

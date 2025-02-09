@@ -1,29 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.Sql;
+﻿
 using static DBConnect;
 using System.Diagnostics;
-using Microsoft.VisualBasic.Devices;
-using Examination_System.Instr;
-using Microsoft.Data.SqlClient;
-using Microsoft.Reporting.WinForms;
+using System.Net.Http.Headers;
+
 
 namespace Examination_System
 {
     public partial class InstructorForm : Form
     {
+       
         // For Making the form Dragable on dragging Certain Forms
         private bool Win_dragging = false;
         private Point Win_dragCursorPoint;
         private Point Win_dragFormPoint;
-
+        private void SetPanelVisibility(Panel activePanel)
+        {
+            HomePanel.Visible = false;
+            Personal_info_Panel.Visible = false;
+            gen_exam_panel.Visible = false;
+            view_exams_panel.Visible = false;
+            reportPanel.Visible = false;
+            panel1.Visible = false;
+            webView.Visible = false;
+            RedBar.Visible = true;
+            RedFlag.Visible = true;
+            activePanel.Visible = true;
+        }
         private void but_Close_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.ExitThread();
@@ -33,12 +35,7 @@ namespace Examination_System
         {
             Highlighter.Height = but_Home.Height;
             Highlighter.Top = but_Home.Top;
-            Personal_info_Panel.Visible = false;
-            gen_exam_panel.Visible = false;
-            view_exams_panel.Visible = false;
-            RedBar.Visible = true;
-            RedFlag.Visible = true;
-            HomePanel.Visible = true;
+            SetPanelVisibility(HomePanel);
 
         }
 
@@ -47,12 +44,7 @@ namespace Examination_System
 
             Highlighter.Height = but_Pinfo.Height;
             Highlighter.Top = but_Pinfo.Top;
-            HomePanel.Visible = false;
-            gen_exam_panel.Visible = false;
-            view_exams_panel.Visible = false;
-            RedBar.Visible = true;
-            RedFlag.Visible = true;
-            Personal_info_Panel.Visible = true;
+            SetPanelVisibility(Personal_info_Panel);
 
         }
 
@@ -60,12 +52,7 @@ namespace Examination_System
         {
             Highlighter.Height = but_GenExams.Height;
             Highlighter.Top = but_GenExams.Top;
-            HomePanel.Visible = false;
-            Personal_info_Panel.Visible = false;
-            view_exams_panel.Visible = false;
-            RedBar.Visible = true;
-            RedFlag.Visible = true;
-            gen_exam_panel.Visible = true;
+            SetPanelVisibility(gen_exam_panel);
         }
         /////////////////////////////////////////////////////////////////////
         ///Aziz 
@@ -74,8 +61,6 @@ namespace Examination_System
             SetPanelVisibility(panel1);
             Highlighter.Height = button1.Height;
             Highlighter.Top = button1.Top;
-            RedBar.Visible = true;
-            RedFlag.Visible = true;
             CreateButtons();
             panel1.Controls.Add(labelReports);
         }
@@ -133,16 +118,7 @@ namespace Examination_System
             }
         }
 
-        private void SetPanelVisibility(Panel activePanel)
-        {
-            HomePanel.Visible = false;
-            Personal_info_Panel.Visible = false;
-            gen_exam_panel.Visible = false;
-            panel1.Visible = false;
-            reportPanel.Visible = false;
-
-            activePanel.Visible = true;
-        }
+      
 
         private string currentProcedure;
 
@@ -209,35 +185,53 @@ namespace Examination_System
 
         private async void ViewReportButton_Click(object sender, EventArgs e)
         {
-            string query = $"EXEC {currentProcedure} ";
-            query += string.Join(", ", parameterInputs.Select(p => $"'{p.Text}'"));
-
-            //await LoadReportAsync(query);
+            HomePanel.Visible = false;
+            Personal_info_Panel.Visible = false;
+            gen_exam_panel.Visible = false;
+            view_exams_panel.Visible = false;
+            reportPanel.Visible = false;
+            panel1.Visible = false;
+            RedBar.Visible = true;
+            RedFlag.Visible = false;
+            webView.Visible = true;
+            getReport(parameterInputs[0].Text);
         }
-
-        private async Task LoadReportAsync(string query)
+        private async void getReport(string track_id)
         {
-            string connectionString = "Data Source=DESKTOP-J5GGBDS\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string reportUrl = $"http://yahya/ReportServer?/Report1&rs:Format=PDF&Track={track_id}";
+            string pdfPath = Path.Combine(Path.GetTempPath(), "Report.pdf");
 
-            try
+            using (HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true })
+            using (HttpClient client = new HttpClient(handler))
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    await conn.OpenAsync();
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
 
-                    reportViewer.LocalReport.DataSources.Clear();
-                    reportViewer.LocalReport.DataSources.Add(new ReportDataSource("ReportData", dt));
-                    reportViewer.RefreshReport();
+                try
+                {
+                    // Download the PDF
+                    byte[] reportData = await client.GetByteArrayAsync(reportUrl);
+                    await File.WriteAllBytesAsync(pdfPath, reportData);
+
+                    // Ensure WebView2 is fully initialized
+                    if (webView.CoreWebView2 == null)
+                    {
+                        await webView.EnsureCoreWebView2Async();
+                    }
+
+                    // Load the PDF file into WebView2
+                    webView.CoreWebView2.Navigate($"file:///{pdfPath.Replace("\\", "/")}");
+                }
+                catch (HttpRequestException ex)
+                {
+                    MessageBox.Show($"Error downloading report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading report: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
+
 
         // Event Handlers
         private void GetStudentsPerTrack(object sender, EventArgs e) { ShowReportPanel("Get Students per Track", "ReportTrackStudents", 1, new[] { "Track ID" }); }
