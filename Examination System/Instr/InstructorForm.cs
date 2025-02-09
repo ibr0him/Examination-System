@@ -13,7 +13,7 @@ namespace Examination_System
         private bool Win_dragging = false;
         private Point Win_dragCursorPoint;
         private Point Win_dragFormPoint;
-        private void SetPanelVisibility(Panel activePanel)
+        private  void SetPanelVisibility(Panel activePanel)
         {
             HomePanel.Visible = false;
             Personal_info_Panel.Visible = false;
@@ -24,7 +24,8 @@ namespace Examination_System
             webView.Visible = false;
             RedBar.Visible = true;
             RedFlag.Visible = true;
-            webView.CoreWebView2.Profile.ClearBrowsingDataAsync();
+            webView.CoreWebView2.Reload();
+
             activePanel.Visible = true;
         }
         private void but_Close_Click(object sender, EventArgs e)
@@ -176,12 +177,14 @@ namespace Examination_System
             }
 
             // Adjust button size and position
-            viewReportButton.Width = 100;
-            viewReportButton.Height = 80;
+            viewReportButton.Width = 250;
+            viewReportButton.Height = 60;
             viewReportButton.Left = leftMargin;
             viewReportButton.Font = new System.Drawing.Font("Arial", 15, System.Drawing.FontStyle.Bold);
             viewReportButton.Top = topMargin + (paramCount * spacing) + 20;
-
+            viewReportButton.BackColor = System.Drawing.Color.FromArgb(178, 8, 55);
+            viewReportButton.ForeColor = System.Drawing.Color.White;
+            viewReportButton.Text = "View Report";
             reportPanel.Controls.Add(viewReportButton);
         }
 
