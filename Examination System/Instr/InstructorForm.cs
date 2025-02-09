@@ -249,11 +249,11 @@ namespace Examination_System
                 }
                 catch (HttpRequestException ex)
                 {
-                    MessageBox.Show($"Error downloading report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PopUp.ErrorMessage($"Error downloading report: {ex.Message}");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error loading PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PopUp.ErrorMessage($"Error loading PDF: {ex.Message}");
                 }
             }
         }
@@ -327,8 +327,7 @@ namespace Examination_System
 
                 if (count != 2)
                 {
-                    MessageBox.Show("Please Enter The DOB in This Formate 'DD/MM/YYY'",
-                        "Wrong DOB Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PopUp.ErrorMessage("Wrong DOB Update\nPlease Enter The DOB in This Formate 'DD/MM/YYY'");
                     return;
                 }
                 else
@@ -337,8 +336,7 @@ namespace Examination_System
                     for (int i = 0; i < Num.Length; i++)
                         if (!int.TryParse(Num[i], out int number))
                         {
-                            MessageBox.Show("DOB Only Accepts Numbers With Special Charater '/ '",
-                                "Wrong DOB Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            PopUp.ErrorMessage("Wrong DOB Update\nDOB Only Accepts Numbers With Special Charater ' / '");
                             return;
                         }
 
@@ -360,23 +358,23 @@ namespace Examination_System
 
             if (result.Contains("Error"))
             {
-                MessageBox.Show(result, "Wrong Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp.ErrorMessage($"Wrong Update\n {result}");
                 return;
             }
             else
-                MessageBox.Show("Information Has Been Updated Successfully");
+                new PopUp("Information Has Been Updated Successfully").DoneMessage("");
 
             Pinfo_Save.Visible = false;
         }
 
         private void but_Notification_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Futuristic Feature Not Required And Not Implemented Yet !");
+            new PopUp("Futuristic Feature Not Required And Not Implemented Yet !").DoneMessage("");
         }
 
         private void but_setting_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Futuristic Feature Not Required And Not Implemented Yet !");
+            new PopUp("Futuristic Feature Not Required And Not Implemented Yet !").DoneMessage("");
         }
 
         private void Panel_MouseDown(object sender, MouseEventArgs e)

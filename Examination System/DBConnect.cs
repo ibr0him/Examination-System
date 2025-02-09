@@ -17,7 +17,7 @@ public static class DBConnect
     private static SqlConnection con;
 
     //Replace this ConnectionString with Yours 
-    public static string connectionString = "Data Source=YAHYA\\SQLEXPRESS;Initial Catalog=Examination System;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+    public static string connectionString = "Data Source=LAPTOP-26BRTGHE\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
 
     public static async Task LoadReportAsync(string query, ReportViewer reportViewer)
@@ -39,7 +39,7 @@ public static class DBConnect
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error loading report: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            PopUp.ErrorMessage($"Database Error\nError loading report: {ex.Message}");
         }
     }
     public static int ProcedureQ(string storedProcedureName, string[] paramNames, object[] paramValues, out string[] Array_OfStrings)

@@ -40,7 +40,7 @@ namespace Examination_System
                                 new object[] { courseId, input1, input2 },
                                 out string[] exam);
 
-                            MessageBox.Show($"Exam generated for {courseName} with {input1} MCQs and {input2} True/False questions.");
+                            new PopUp($"Exam generated for {courseName} with {input1} MCQs and {input2} True/False questions.").DoneMessage("");
                         }
                     }
                 }

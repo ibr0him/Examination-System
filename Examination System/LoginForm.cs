@@ -69,9 +69,9 @@ namespace Examination_System
             else
             {
                 if (textBox_email.Text == "" || textBox_password.Text == "")
-                    MessageBox.Show("Need login data", "Wrong Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PopUp.ErrorMessage("Please Fill Your login Data");
                 else
-                    MessageBox.Show("Your Password or Email Is not Correct", "Wrong Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PopUp.ErrorMessage("Your Password or Email Is not Correct");
             }
         }
 

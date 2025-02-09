@@ -26,9 +26,7 @@ namespace Examination_System
             ProcedureQ("GetExamsByCourse", new string[] { "@Crs_id" }, new object[] { courseId }, out string[] examArray);
 
             if (examArray.Length % 5 != 0)
-            {
-                MessageBox.Show("No Exams For This Course.");
-            }
+                PopUp.ErrorMessage("No Exams For This Course.");
             else
             {
                 examList.Clear();
@@ -100,14 +98,14 @@ namespace Examination_System
                         Cursor = Cursors.Hand
                     };
 
-                    pictureBox.Click += (sender, e) => MessageBox.Show($"Button {i + 1} clicked!");
+                    pictureBox.Click += (sender, e) => new PopUp($"Button {i + 1} clicked!").DoneMessage("");
 
                     Label label = new Label
                     {
                         Text = $"Exam {i + 1}",
                         Width = buttonWidth,
                         Height = 20,
-                        TextAlign = ContentAlignment.MiddleLeft,
+                        TextAlign = ContentAlignment.MiddleCenter,
                         Top = buttonHeight + 5
                     };
 

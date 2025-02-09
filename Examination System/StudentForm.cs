@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using RadioButton = System.Windows.Forms.RadioButton;
 using System.Web;
 using System.Timers;
+using Examination_System.Instr;
 
 
 namespace Examination_System
@@ -293,7 +294,7 @@ namespace Examination_System
                     }
                     else
                     {
-                        MessageBox.Show($"{Output[0]}", "DataBase Error Parsing Finished Exams", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        PopUp.ErrorMessage($"DataBase Error Parsing Finished Exams\n{Output[0]}");
                         return;
                     }
 
@@ -326,7 +327,7 @@ namespace Examination_System
 
             else
             {
-                MessageBox.Show($"{Output[0]}", "DataBase Error Selecting Finished Exams", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp.ErrorMessage($"DataBase Error Selecting Finished Exams\n{Output[0]}");
                 return;
             }
 
@@ -432,7 +433,7 @@ namespace Examination_System
 
                     else
                     {
-                        MessageBox.Show($"{Output[0]}", "DataBase Error Parsing Outgoing Exams", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        PopUp.ErrorMessage($"DataBase Error Parsing Outgoing Exams\n{Output[0]}");
                         return;
                     }
 
@@ -466,7 +467,7 @@ namespace Examination_System
 
             else
             {
-                MessageBox.Show($"{Output[0]}", "DataBase Error Selecting Outgoing Exams", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp.ErrorMessage($"DataBase Error Selecting Outgoing Exams\n{Output[0]}");
                 return;
             }
 
@@ -545,9 +546,8 @@ namespace Examination_System
         {
             Label Clicked = sender as Label;
 
-            DialogResult result = MessageBox.Show("Are You Sure You Want To Take The Exam Now ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
+            if (new PopUp("Are You Sure You Want To Take The Exam Now ?").ConfirmMessage(""))
             {
                 but_Home.Enabled = false;
                 but_FB.Enabled = false;
@@ -571,10 +571,16 @@ namespace Examination_System
         }
         private void but_Logout_Click(object sender, EventArgs e)
         {
-            this.Hide();
             LoginForm L = new LoginForm();
             L.Show();
 
+            //Reseting Static Flags
+            Upper_index = 0;
+            Lower_index = 0;
+            Q_index = 0;
+            Win_dragging = false;
+
+            this.Close();
         }
 
         private void but_FB_Click(object sender, EventArgs e)
@@ -607,12 +613,12 @@ namespace Examination_System
 
         private void but_setting_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Futuristic Feature Not Required And Not Implemented Yet !");
+            new PopUp("Futuristic Feature Not Required And Not Implemented Yet !").DoneMessage("");
         }
 
         private void but_Notification_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Futuristic Feature Not Required And Not Implemented Yet !");
+            new PopUp("Futuristic Feature Not Required And Not Implemented Yet !").DoneMessage("");
 
         }
         private void Panel_MouseDown(object sender, MouseEventArgs e)
@@ -950,9 +956,9 @@ namespace Examination_System
         {
             if (but_Next.Text == "Submit")
             {
-                DialogResult result = MessageBox.Show("Are You Sure You Want To Submit Exam Now ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+
+                if (new PopUp("Are You Sure You Want To Submit Exam Now ?").ConfirmMessage(""))
                 {
                     ExamTimer.Stop();
 
@@ -1069,19 +1075,19 @@ namespace Examination_System
 
             if (Student[4] != Change_DOB.Text)
             {
-                Student[4]=Change_DOB.Text.Trim();
+                Student[4] = Change_DOB.Text.Trim();
 
                 string temp = Student[4];
                 int count = 0;
-               
+
                 for (int i = 0; i < temp.Length; i++)
-                    if (temp[i]=='/')
+                    if (temp[i] == '/')
                         count++;
-                
+
                 if (count != 2)
-                { 
-                    MessageBox.Show("Please Enter The DOB in This Formate 'DD/MM/YYY'", 
-                        "Wrong DOB Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    PopUp.ErrorMessage("Wrong DOB Update \nPlease Enter The DOB in This Formate 'DD/MM/YYY'");
+
                     return;
                 }
                 else
@@ -1090,44 +1096,45 @@ namespace Examination_System
                     for (int i = 0; i < Num.Length; i++)
                         if (!int.TryParse(Num[i], out int number))
                         {
-                            MessageBox.Show("DOB Only Accepts Numbers With Special Charater '/ '",
-                                "Wrong DOB Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return ;
+                            PopUp.ErrorMessage("Wrong DOB Update \nDOB Only Accepts Numbers With Special Charater");
+
+                            return;
                         }
-                    
+
                 }
-                
+
             }
 
             Student[1] = Change_Name.Text.Trim();
             Student[7] = Change_Address.Text.Trim();
             Student[8] = Change_Speciality.Text.Trim();
 
-            string result=string.Empty;
+            string result = string.Empty;
             string Query1 = $@"Update Users
                             Set Name = '{Student[1]}',DOB ='{Student[4]}',Address='{Student[7]}'
                             Where ID = {Student[0]}";
-            
+
             string Query2 = $@"Update Student
                         Set Specialist ='{Student[8]}'
                         Where ID = {Student[0]}";
-            
+
             result = $"{ModifyQ(Query1)} {ModifyQ(Query2)}";
 
             if (result.Contains("Error"))
             {
-                MessageBox.Show(result, "Wrong Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp.ErrorMessage($"Wrong Update \n{result}");
+
                 return;
             }
             else
-                MessageBox.Show("Information Has Been Updated Successfully");
-            
+                new PopUp("Information Has Been Updated Successfully").DoneMessage("");
+
             Pinfo_Save.Visible = false;
         }
 
         private void PinfoTB_Selected(object sender, EventArgs e)
         {
-            Pinfo_Save.Visible=true;
+            Pinfo_Save.Visible = true;
         }
     }
 }

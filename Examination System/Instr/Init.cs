@@ -69,9 +69,7 @@ namespace Examination_System
             ProcedureQ("ReportInstCourses", new string[] { "@Inst_Id" }, new object[] { Teacher[0] }, out string[] coursesArray);
 
             if (coursesArray.Length % 3 != 0)
-            {
-                MessageBox.Show("Error: Unexpected course data format.");
-            }
+                PopUp.ErrorMessage("Error: Unexpected course data format.");
             else
             {
                 for (int i = 0; i < coursesArray.Length; i += 3)
@@ -102,8 +100,8 @@ namespace Examination_System
             Change_Gender.Text = " " + Teacher[5];
             Change_Type.Text = " " + Teacher[6];
             Change_Address.Text = " " + Teacher[7];
-            Change_Salary.Text = $" {Teacher[8]:C}";
-            
+            Change_Salary.Text = $"{decimal.Parse(Teacher[8]):N2} EGP";
+
             Teachers = Teacher;
 
         }
