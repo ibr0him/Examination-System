@@ -14,16 +14,26 @@ namespace Examination_System
         {
             webView = new Microsoft.Web.WebView2.WinForms.WebView2
             {
-                Dock = DockStyle.Fill,
-                Source = new Uri("about:blank") // Initialize with a blank page
+                Source = new Uri("about:blank"), // Initialize with a blank page
+                Visible = false
             };
 
-            // Add the WebView2 control to your form/container
+            // Set initial size to match parent panel
+            webView.Size = this.ClientSize;
+            webView.Location = gen_exam_panel.Location;
+
+            // Handle resizing dynamically
+            this.SizeChanged += (sender, e) =>
+            {
+                webView.Size = gen_exam_panel.Size;
+            };
+            // Add the WebView2 control to the form/container
             this.Controls.Add(webView);
 
             // Initialize the CoreWebView2 environment
             webView.EnsureCoreWebView2Async();
         }
+
 
         System.ComponentModel.ComponentResourceManager resources1 = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
         // To Transfer Teacher's Personal Data

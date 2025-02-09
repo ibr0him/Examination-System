@@ -13,7 +13,19 @@ namespace Examination_System
         private bool Win_dragging = false;
         private Point Win_dragCursorPoint;
         private Point Win_dragFormPoint;
-
+        private void SetPanelVisibility(Panel activePanel)
+        {
+            HomePanel.Visible = false;
+            Personal_info_Panel.Visible = false;
+            gen_exam_panel.Visible = false;
+            view_exams_panel.Visible = false;
+            reportPanel.Visible = false;
+            panel1.Visible = false;
+            webView.Visible = false;
+            RedBar.Visible = true;
+            RedFlag.Visible = true;
+            activePanel.Visible = true;
+        }
         private void but_Close_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.ExitThread();
@@ -23,12 +35,7 @@ namespace Examination_System
         {
             Highlighter.Height = but_Home.Height;
             Highlighter.Top = but_Home.Top;
-            Personal_info_Panel.Visible = false;
-            gen_exam_panel.Visible = false;
-            view_exams_panel.Visible = false;
-            RedBar.Visible = true;
-            RedFlag.Visible = true;
-            HomePanel.Visible = true;
+            SetPanelVisibility(HomePanel);
 
         }
 
@@ -37,12 +44,7 @@ namespace Examination_System
 
             Highlighter.Height = but_Pinfo.Height;
             Highlighter.Top = but_Pinfo.Top;
-            HomePanel.Visible = false;
-            gen_exam_panel.Visible = false;
-            view_exams_panel.Visible = false;
-            RedBar.Visible = true;
-            RedFlag.Visible = true;
-            Personal_info_Panel.Visible = true;
+            SetPanelVisibility(Personal_info_Panel);
 
         }
 
@@ -50,12 +52,7 @@ namespace Examination_System
         {
             Highlighter.Height = but_GenExams.Height;
             Highlighter.Top = but_GenExams.Top;
-            HomePanel.Visible = false;
-            Personal_info_Panel.Visible = false;
-            view_exams_panel.Visible = false;
-            RedBar.Visible = true;
-            RedFlag.Visible = true;
-            gen_exam_panel.Visible = true;
+            SetPanelVisibility(gen_exam_panel);
         }
         /////////////////////////////////////////////////////////////////////
         ///Aziz 
@@ -64,8 +61,6 @@ namespace Examination_System
             SetPanelVisibility(panel1);
             Highlighter.Height = button1.Height;
             Highlighter.Top = button1.Top;
-            RedBar.Visible = true;
-            RedFlag.Visible = true;
             CreateButtons();
             panel1.Controls.Add(labelReports);
         }
@@ -123,17 +118,7 @@ namespace Examination_System
             }
         }
 
-        private void SetPanelVisibility(Panel activePanel)
-        {
-            HomePanel.Visible = false;
-            Personal_info_Panel.Visible = false;
-            gen_exam_panel.Visible = false;
-            view_exams_panel.Visible = false;
-            reportPanel.Visible = false;
-            panel1.Visible = false;
-
-            activePanel.Visible = true;
-        }
+      
 
         private string currentProcedure;
 
@@ -200,8 +185,20 @@ namespace Examination_System
 
         private async void ViewReportButton_Click(object sender, EventArgs e)
         {
+            HomePanel.Visible = false;
+            Personal_info_Panel.Visible = false;
+            gen_exam_panel.Visible = false;
+            view_exams_panel.Visible = false;
             reportPanel.Visible = false;
-            string reportUrl = "http://yahya/ReportServer?/Report1&rs:Format=PDF&Track=1";
+            panel1.Visible = false;
+            RedBar.Visible = true;
+            RedFlag.Visible = false;
+            webView.Visible = true;
+            getReport(parameterInputs[0].Text);
+        }
+        private async void getReport(string track_id)
+        {
+            string reportUrl = $"http://yahya/ReportServer?/Report1&rs:Format=PDF&Track={track_id}";
             string pdfPath = Path.Combine(Path.GetTempPath(), "Report.pdf");
 
             using (HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true })
@@ -234,7 +231,6 @@ namespace Examination_System
                 }
             }
         }
-
 
 
         // Event Handlers

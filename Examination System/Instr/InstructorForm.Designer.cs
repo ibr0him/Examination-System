@@ -32,8 +32,8 @@ namespace Examination_System
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstructorForm));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             SidePanel = new Panel();
             button1 = new Button();
             but_Logout = new Button();
@@ -118,9 +118,9 @@ namespace Examination_System
             SidePanel.Controls.Add(but_Home);
             SidePanel.Dock = DockStyle.Left;
             SidePanel.Location = new Point(0, 0);
-            SidePanel.Margin = new Padding(6, 5, 6, 5);
+            SidePanel.Margin = new Padding(5, 4, 5, 4);
             SidePanel.Name = "SidePanel";
-            SidePanel.Size = new Size(357, 1333);
+            SidePanel.Size = new Size(286, 1067);
             SidePanel.TabIndex = 0;
             SidePanel.MouseDown += Panel_MouseDown;
             SidePanel.MouseMove += Panel_MouseMove;
@@ -134,10 +134,10 @@ namespace Examination_System
             button1.ForeColor = Color.White;
             button1.Image = (Image)resources.GetObject("button1.Image");
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(27, 550);
-            button1.Margin = new Padding(6, 5, 6, 5);
+            button1.Location = new Point(22, 440);
+            button1.Margin = new Padding(5, 4, 5, 4);
             button1.Name = "button1";
-            button1.Size = new Size(304, 92);
+            button1.Size = new Size(243, 74);
             button1.TabIndex = 14;
             button1.Text = " Reports";
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -152,10 +152,10 @@ namespace Examination_System
             but_Logout.ForeColor = Color.White;
             but_Logout.Image = (Image)resources.GetObject("but_Logout.Image");
             but_Logout.ImageAlign = ContentAlignment.MiddleLeft;
-            but_Logout.Location = new Point(27, 1182);
-            but_Logout.Margin = new Padding(6, 5, 6, 5);
+            but_Logout.Location = new Point(22, 946);
+            but_Logout.Margin = new Padding(5, 4, 5, 4);
             but_Logout.Name = "but_Logout";
-            but_Logout.Size = new Size(271, 92);
+            but_Logout.Size = new Size(217, 74);
             but_Logout.TabIndex = 13;
             but_Logout.Text = "  Log out";
             but_Logout.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -165,10 +165,10 @@ namespace Examination_System
             // Highlighter
             // 
             Highlighter.BackColor = Color.FromArgb(178, 8, 55);
-            Highlighter.Location = new Point(6, 62);
-            Highlighter.Margin = new Padding(6, 5, 6, 5);
+            Highlighter.Location = new Point(5, 50);
+            Highlighter.Margin = new Padding(5, 4, 5, 4);
             Highlighter.Name = "Highlighter";
-            Highlighter.Size = new Size(20, 117);
+            Highlighter.Size = new Size(16, 94);
             Highlighter.TabIndex = 12;
             // 
             // but_GenExams
@@ -179,10 +179,10 @@ namespace Examination_System
             but_GenExams.ForeColor = Color.White;
             but_GenExams.Image = (Image)resources.GetObject("but_GenExams.Image");
             but_GenExams.ImageAlign = ContentAlignment.MiddleLeft;
-            but_GenExams.Location = new Point(27, 395);
-            but_GenExams.Margin = new Padding(6, 5, 6, 5);
+            but_GenExams.Location = new Point(22, 316);
+            but_GenExams.Margin = new Padding(5, 4, 5, 4);
             but_GenExams.Name = "but_GenExams";
-            but_GenExams.Size = new Size(337, 98);
+            but_GenExams.Size = new Size(270, 78);
             but_GenExams.TabIndex = 2;
             but_GenExams.Text = " Generate Exams";
             but_GenExams.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -197,10 +197,10 @@ namespace Examination_System
             but_Pinfo.ForeColor = Color.White;
             but_Pinfo.Image = (Image)resources.GetObject("but_Pinfo.Image");
             but_Pinfo.ImageAlign = ContentAlignment.MiddleLeft;
-            but_Pinfo.Location = new Point(27, 232);
-            but_Pinfo.Margin = new Padding(6, 5, 6, 5);
+            but_Pinfo.Location = new Point(22, 186);
+            but_Pinfo.Margin = new Padding(5, 4, 5, 4);
             but_Pinfo.Name = "but_Pinfo";
-            but_Pinfo.Size = new Size(304, 92);
+            but_Pinfo.Size = new Size(243, 74);
             but_Pinfo.TabIndex = 2;
             but_Pinfo.Text = " Personal Info";
             but_Pinfo.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -215,10 +215,10 @@ namespace Examination_System
             but_Home.ForeColor = Color.White;
             but_Home.Image = (Image)resources.GetObject("but_Home.Image");
             but_Home.ImageAlign = ContentAlignment.MiddleLeft;
-            but_Home.Location = new Point(27, 73);
-            but_Home.Margin = new Padding(6, 5, 6, 5);
+            but_Home.Location = new Point(22, 58);
+            but_Home.Margin = new Padding(5, 4, 5, 4);
             but_Home.Name = "but_Home";
-            but_Home.Size = new Size(271, 87);
+            but_Home.Size = new Size(217, 70);
             but_Home.TabIndex = 2;
             but_Home.Text = " Home";
             but_Home.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -229,20 +229,19 @@ namespace Examination_System
             // 
             gen_exam_panel.Controls.Add(label1);
             gen_exam_panel.Controls.Add(dataGridView1);
-            gen_exam_panel.Location = new Point(361, 133);
-            gen_exam_panel.Margin = new Padding(4, 5, 4, 5);
+            gen_exam_panel.Location = new Point(289, 106);
+            gen_exam_panel.Margin = new Padding(3, 4, 3, 4);
             gen_exam_panel.Name = "gen_exam_panel";
-            gen_exam_panel.Size = new Size(1703, 1178);
+            gen_exam_panel.Size = new Size(1362, 942);
             gen_exam_panel.TabIndex = 14;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 24F);
-            label1.Location = new Point(623, 57);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(498, 46);
             label1.Name = "label1";
-            label1.Size = new Size(391, 58);
+            label1.Size = new Size(329, 49);
             label1.TabIndex = 0;
             label1.Text = "Generate Exam";
             // 
@@ -254,29 +253,29 @@ namespace Examination_System
             dataGridView1.BackgroundColor = SystemColors.Menu;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Tahoma", 16F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { CourseID, CourseName, StudentNumber, gen, viewExamsButton });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = SystemColors.Menu;
             dataGridView1.ImeMode = ImeMode.On;
-            dataGridView1.Location = new Point(66, 217);
-            dataGridView1.Margin = new Padding(4, 3, 4, 3);
+            dataGridView1.Location = new Point(53, 174);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -288,7 +287,7 @@ namespace Examination_System
             dataGridView1.ShowCellToolTips = false;
             dataGridView1.ShowEditingIcon = false;
             dataGridView1.ShowRowErrors = false;
-            dataGridView1.Size = new Size(1601, 837);
+            dataGridView1.Size = new Size(1281, 670);
             dataGridView1.TabIndex = 18;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -356,10 +355,10 @@ namespace Examination_System
             // 
             RedBar.BackColor = Color.FromArgb(178, 8, 55);
             RedBar.Dock = DockStyle.Top;
-            RedBar.Location = new Point(357, 0);
-            RedBar.Margin = new Padding(6, 5, 6, 5);
+            RedBar.Location = new Point(286, 0);
+            RedBar.Margin = new Padding(5, 4, 5, 4);
             RedBar.Name = "RedBar";
-            RedBar.Size = new Size(1707, 40);
+            RedBar.Size = new Size(1365, 32);
             RedBar.TabIndex = 1;
             RedBar.MouseDown += Panel_MouseDown;
             RedBar.MouseMove += Panel_MouseMove;
@@ -373,10 +372,10 @@ namespace Examination_System
             but_Close.ForeColor = Color.White;
             but_Close.Image = (Image)resources.GetObject("but_Close.Image");
             but_Close.ImageAlign = ContentAlignment.MiddleLeft;
-            but_Close.Location = new Point(1994, 48);
-            but_Close.Margin = new Padding(6, 5, 6, 5);
+            but_Close.Location = new Point(1595, 38);
+            but_Close.Margin = new Padding(5, 4, 5, 4);
             but_Close.Name = "but_Close";
-            but_Close.Size = new Size(60, 75);
+            but_Close.Size = new Size(48, 60);
             but_Close.TabIndex = 5;
             but_Close.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_Close.UseVisualStyleBackColor = true;
@@ -390,10 +389,10 @@ namespace Examination_System
             but_instagram.ForeColor = Color.White;
             but_instagram.Image = (Image)resources.GetObject("but_instagram.Image");
             but_instagram.ImageAlign = ContentAlignment.MiddleLeft;
-            but_instagram.Location = new Point(1539, 53);
-            but_instagram.Margin = new Padding(6, 5, 6, 5);
+            but_instagram.Location = new Point(1231, 42);
+            but_instagram.Margin = new Padding(5, 4, 5, 4);
             but_instagram.Name = "but_instagram";
-            but_instagram.Size = new Size(50, 65);
+            but_instagram.Size = new Size(40, 52);
             but_instagram.TabIndex = 6;
             but_instagram.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_instagram.UseVisualStyleBackColor = true;
@@ -407,10 +406,10 @@ namespace Examination_System
             but_twitter.ForeColor = Color.White;
             but_twitter.Image = (Image)resources.GetObject("but_twitter.Image");
             but_twitter.ImageAlign = ContentAlignment.MiddleLeft;
-            but_twitter.Location = new Point(1469, 53);
-            but_twitter.Margin = new Padding(6, 5, 6, 5);
+            but_twitter.Location = new Point(1175, 42);
+            but_twitter.Margin = new Padding(5, 4, 5, 4);
             but_twitter.Name = "but_twitter";
-            but_twitter.Size = new Size(50, 65);
+            but_twitter.Size = new Size(40, 52);
             but_twitter.TabIndex = 7;
             but_twitter.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_twitter.UseVisualStyleBackColor = true;
@@ -424,10 +423,10 @@ namespace Examination_System
             but_FB.ForeColor = Color.White;
             but_FB.Image = (Image)resources.GetObject("but_FB.Image");
             but_FB.ImageAlign = ContentAlignment.MiddleLeft;
-            but_FB.Location = new Point(1399, 53);
-            but_FB.Margin = new Padding(6, 5, 6, 5);
+            but_FB.Location = new Point(1119, 42);
+            but_FB.Margin = new Padding(5, 4, 5, 4);
             but_FB.Name = "but_FB";
-            but_FB.Size = new Size(50, 65);
+            but_FB.Size = new Size(40, 52);
             but_FB.TabIndex = 8;
             but_FB.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_FB.UseVisualStyleBackColor = true;
@@ -441,10 +440,10 @@ namespace Examination_System
             but_setting.ForeColor = Color.White;
             but_setting.Image = (Image)resources.GetObject("but_setting.Image");
             but_setting.ImageAlign = ContentAlignment.MiddleLeft;
-            but_setting.Location = new Point(1931, 52);
-            but_setting.Margin = new Padding(6, 5, 6, 5);
+            but_setting.Location = new Point(1545, 42);
+            but_setting.Margin = new Padding(5, 4, 5, 4);
             but_setting.Name = "but_setting";
-            but_setting.Size = new Size(53, 67);
+            but_setting.Size = new Size(42, 54);
             but_setting.TabIndex = 9;
             but_setting.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_setting.UseVisualStyleBackColor = true;
@@ -458,10 +457,10 @@ namespace Examination_System
             but_Notification.ForeColor = Color.White;
             but_Notification.Image = (Image)resources.GetObject("but_Notification.Image");
             but_Notification.ImageAlign = ContentAlignment.MiddleLeft;
-            but_Notification.Location = new Point(1869, 52);
-            but_Notification.Margin = new Padding(6, 5, 6, 5);
+            but_Notification.Location = new Point(1495, 42);
+            but_Notification.Margin = new Padding(5, 4, 5, 4);
             but_Notification.Name = "but_Notification";
-            but_Notification.Size = new Size(53, 67);
+            but_Notification.Size = new Size(42, 54);
             but_Notification.TabIndex = 10;
             but_Notification.TextImageRelation = TextImageRelation.ImageBeforeText;
             but_Notification.UseVisualStyleBackColor = true;
@@ -473,10 +472,10 @@ namespace Examination_System
             RedFlag.Controls.Add(Project_Subheader);
             RedFlag.Controls.Add(Project_header);
             RedFlag.Controls.Add(Project_icon);
-            RedFlag.Location = new Point(503, 2);
-            RedFlag.Margin = new Padding(6, 5, 6, 5);
+            RedFlag.Location = new Point(402, 2);
+            RedFlag.Margin = new Padding(5, 4, 5, 4);
             RedFlag.Name = "RedFlag";
-            RedFlag.Size = new Size(186, 275);
+            RedFlag.Size = new Size(149, 220);
             RedFlag.TabIndex = 11;
             // 
             // Project_Subheader
@@ -484,10 +483,10 @@ namespace Examination_System
             Project_Subheader.AutoSize = true;
             Project_Subheader.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Project_Subheader.ForeColor = Color.White;
-            Project_Subheader.Location = new Point(59, 227);
-            Project_Subheader.Margin = new Padding(6, 0, 6, 0);
+            Project_Subheader.Location = new Point(47, 182);
+            Project_Subheader.Margin = new Padding(5, 0, 5, 0);
             Project_Subheader.Name = "Project_Subheader";
-            Project_Subheader.Size = new Size(73, 21);
+            Project_Subheader.Size = new Size(58, 20);
             Project_Subheader.TabIndex = 3;
             Project_Subheader.Text = "System";
             // 
@@ -496,20 +495,20 @@ namespace Examination_System
             Project_header.AutoSize = true;
             Project_header.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Project_header.ForeColor = Color.White;
-            Project_header.Location = new Point(20, 193);
-            Project_header.Margin = new Padding(6, 0, 6, 0);
+            Project_header.Location = new Point(16, 154);
+            Project_header.Margin = new Padding(5, 0, 5, 0);
             Project_header.Name = "Project_header";
-            Project_header.Size = new Size(154, 28);
+            Project_header.Size = new Size(129, 23);
             Project_header.TabIndex = 3;
             Project_header.Text = "Examination";
             // 
             // Project_icon
             // 
             Project_icon.Image = (Image)resources.GetObject("Project_icon.Image");
-            Project_icon.Location = new Point(11, 18);
-            Project_icon.Margin = new Padding(6, 5, 6, 5);
+            Project_icon.Location = new Point(9, 14);
+            Project_icon.Margin = new Padding(5, 4, 5, 4);
             Project_icon.Name = "Project_icon";
-            Project_icon.Size = new Size(151, 170);
+            Project_icon.Size = new Size(121, 136);
             Project_icon.SizeMode = PictureBoxSizeMode.Zoom;
             Project_icon.TabIndex = 4;
             Project_icon.TabStop = false;
@@ -523,20 +522,20 @@ namespace Examination_System
             HomePanel.Controls.Add(lab_crs);
             HomePanel.Controls.Add(lab_track);
             HomePanel.Controls.Add(HomePanel_img);
-            HomePanel.Location = new Point(363, 167);
-            HomePanel.Margin = new Padding(6, 5, 6, 5);
+            HomePanel.Location = new Point(290, 134);
+            HomePanel.Margin = new Padding(5, 4, 5, 4);
             HomePanel.Name = "HomePanel";
-            HomePanel.Size = new Size(1629, 1147);
+            HomePanel.Size = new Size(1303, 918);
             HomePanel.TabIndex = 12;
             // 
             // Clab_ID
             // 
             Clab_ID.AutoSize = true;
             Clab_ID.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Clab_ID.Location = new Point(233, 1027);
-            Clab_ID.Margin = new Padding(6, 0, 6, 0);
+            Clab_ID.Location = new Point(186, 822);
+            Clab_ID.Margin = new Padding(5, 0, 5, 0);
             Clab_ID.Name = "Clab_ID";
-            Clab_ID.Size = new Size(45, 50);
+            Clab_ID.Size = new Size(36, 40);
             Clab_ID.TabIndex = 21;
             Clab_ID.Text = "0";
             // 
@@ -544,10 +543,10 @@ namespace Examination_System
             // 
             Clab_track.AutoSize = true;
             Clab_track.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Clab_track.Location = new Point(769, 1027);
-            Clab_track.Margin = new Padding(6, 0, 6, 0);
+            Clab_track.Location = new Point(615, 822);
+            Clab_track.Margin = new Padding(5, 0, 5, 0);
             Clab_track.Name = "Clab_track";
-            Clab_track.Size = new Size(45, 50);
+            Clab_track.Size = new Size(36, 40);
             Clab_track.TabIndex = 22;
             Clab_track.Text = "0";
             // 
@@ -555,10 +554,10 @@ namespace Examination_System
             // 
             Clab_crs.AutoSize = true;
             Clab_crs.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Clab_crs.Location = new Point(1520, 1028);
-            Clab_crs.Margin = new Padding(6, 0, 6, 0);
+            Clab_crs.Location = new Point(1216, 822);
+            Clab_crs.Margin = new Padding(5, 0, 5, 0);
             Clab_crs.Name = "Clab_crs";
-            Clab_crs.Size = new Size(45, 50);
+            Clab_crs.Size = new Size(36, 40);
             Clab_crs.TabIndex = 23;
             Clab_crs.Text = "0";
             // 
@@ -566,10 +565,10 @@ namespace Examination_System
             // 
             lab_ID.AutoSize = true;
             lab_ID.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lab_ID.Location = new Point(156, 1025);
-            lab_ID.Margin = new Padding(6, 0, 6, 0);
+            lab_ID.Location = new Point(125, 820);
+            lab_ID.Margin = new Padding(5, 0, 5, 0);
             lab_ID.Name = "lab_ID";
-            lab_ID.Size = new Size(86, 50);
+            lab_ID.Size = new Size(68, 40);
             lab_ID.TabIndex = 24;
             lab_ID.Text = "ID :";
             // 
@@ -577,10 +576,10 @@ namespace Examination_System
             // 
             lab_crs.AutoSize = true;
             lab_crs.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lab_crs.Location = new Point(920, 1027);
-            lab_crs.Margin = new Padding(6, 0, 6, 0);
+            lab_crs.Location = new Point(736, 822);
+            lab_crs.Margin = new Padding(5, 0, 5, 0);
             lab_crs.Name = "lab_crs";
-            lab_crs.Size = new Size(645, 50);
+            lab_crs.Size = new Size(527, 40);
             lab_crs.TabIndex = 25;
             lab_crs.Text = "Number Of  Teached Cources :";
             // 
@@ -589,20 +588,20 @@ namespace Examination_System
             lab_track.AutoSize = true;
             lab_track.Font = new Font("Century Gothic", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lab_track.ImageAlign = ContentAlignment.MiddleLeft;
-            lab_track.Location = new Point(406, 1027);
-            lab_track.Margin = new Padding(6, 0, 6, 0);
+            lab_track.Location = new Point(325, 822);
+            lab_track.Margin = new Padding(5, 0, 5, 0);
             lab_track.Name = "lab_track";
-            lab_track.Size = new Size(399, 50);
+            lab_track.Size = new Size(322, 40);
             lab_track.TabIndex = 26;
             lab_track.Text = "Teaches For Track :";
             // 
             // HomePanel_img
             // 
             HomePanel_img.Image = (Image)resources.GetObject("HomePanel_img.Image");
-            HomePanel_img.Location = new Point(281, 5);
-            HomePanel_img.Margin = new Padding(6, 5, 6, 5);
+            HomePanel_img.Location = new Point(225, 4);
+            HomePanel_img.Margin = new Padding(5, 4, 5, 4);
             HomePanel_img.Name = "HomePanel_img";
-            HomePanel_img.Size = new Size(1249, 913);
+            HomePanel_img.Size = new Size(999, 730);
             HomePanel_img.SizeMode = PictureBoxSizeMode.Zoom;
             HomePanel_img.TabIndex = 27;
             HomePanel_img.TabStop = false;
@@ -628,10 +627,10 @@ namespace Examination_System
             Personal_info_Panel.Controls.Add(ID_Title);
             Personal_info_Panel.Controls.Add(pictureBox1);
             Personal_info_Panel.Controls.Add(Change_ID);
-            Personal_info_Panel.Location = new Point(357, 133);
-            Personal_info_Panel.Margin = new Padding(4, 5, 4, 5);
+            Personal_info_Panel.Location = new Point(286, 106);
+            Personal_info_Panel.Margin = new Padding(3, 4, 3, 4);
             Personal_info_Panel.Name = "Personal_info_Panel";
-            Personal_info_Panel.Size = new Size(1650, 1180);
+            Personal_info_Panel.Size = new Size(1320, 944);
             Personal_info_Panel.TabIndex = 13;
             // 
             // Pinfo_Save
@@ -640,10 +639,10 @@ namespace Examination_System
             Pinfo_Save.FlatStyle = FlatStyle.Flat;
             Pinfo_Save.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Pinfo_Save.ForeColor = Color.White;
-            Pinfo_Save.Location = new Point(1449, 1063);
-            Pinfo_Save.Margin = new Padding(4, 5, 4, 5);
+            Pinfo_Save.Location = new Point(1159, 850);
+            Pinfo_Save.Margin = new Padding(3, 4, 3, 4);
             Pinfo_Save.Name = "Pinfo_Save";
-            Pinfo_Save.Size = new Size(181, 77);
+            Pinfo_Save.Size = new Size(145, 62);
             Pinfo_Save.TabIndex = 19;
             Pinfo_Save.Text = "Save";
             Pinfo_Save.UseVisualStyleBackColor = false;
@@ -653,10 +652,9 @@ namespace Examination_System
             // 
             Personal_Details.AutoSize = true;
             Personal_Details.Font = new Font("Century Gothic", 24F);
-            Personal_Details.Location = new Point(611, 520);
-            Personal_Details.Margin = new Padding(4, 0, 4, 0);
+            Personal_Details.Location = new Point(489, 416);
             Personal_Details.Name = "Personal_Details";
-            Personal_Details.Size = new Size(591, 58);
+            Personal_Details.Size = new Size(496, 49);
             Personal_Details.TabIndex = 0;
             Personal_Details.Text = "Teacher Personal Details";
             // 
@@ -664,10 +662,9 @@ namespace Examination_System
             // 
             Salary_Title.AutoSize = true;
             Salary_Title.Font = new Font("Century Gothic", 19F);
-            Salary_Title.Location = new Point(649, 1018);
-            Salary_Title.Margin = new Padding(4, 0, 4, 0);
+            Salary_Title.Location = new Point(519, 814);
             Salary_Title.Name = "Salary_Title";
-            Salary_Title.Size = new Size(132, 45);
+            Salary_Title.Size = new Size(110, 39);
             Salary_Title.TabIndex = 17;
             Salary_Title.Text = "Salary";
             // 
@@ -677,20 +674,19 @@ namespace Examination_System
             Change_Salary.Enabled = false;
             Change_Salary.Font = new Font("Century Gothic", 14F);
             Change_Salary.ForeColor = SystemColors.Desktop;
-            Change_Salary.Location = new Point(651, 1082);
-            Change_Salary.Margin = new Padding(4, 5, 4, 5);
+            Change_Salary.Location = new Point(521, 866);
+            Change_Salary.Margin = new Padding(3, 4, 3, 4);
             Change_Salary.Name = "Change_Salary";
-            Change_Salary.Size = new Size(388, 42);
+            Change_Salary.Size = new Size(311, 36);
             Change_Salary.TabIndex = 16;
             // 
             // Address_Title
             // 
             Address_Title.AutoSize = true;
             Address_Title.Font = new Font("Century Gothic", 19F);
-            Address_Title.Location = new Point(63, 1018);
-            Address_Title.Margin = new Padding(4, 0, 4, 0);
+            Address_Title.Location = new Point(50, 814);
             Address_Title.Name = "Address_Title";
-            Address_Title.Size = new Size(165, 45);
+            Address_Title.Size = new Size(139, 39);
             Address_Title.TabIndex = 15;
             Address_Title.Text = "Address";
             // 
@@ -699,10 +695,10 @@ namespace Examination_System
             Change_Address.BackColor = SystemColors.Control;
             Change_Address.Font = new Font("Century Gothic", 14F);
             Change_Address.ForeColor = SystemColors.Desktop;
-            Change_Address.Location = new Point(67, 1082);
-            Change_Address.Margin = new Padding(4, 5, 4, 5);
+            Change_Address.Location = new Point(54, 866);
+            Change_Address.Margin = new Padding(3, 4, 3, 4);
             Change_Address.Name = "Change_Address";
-            Change_Address.Size = new Size(388, 42);
+            Change_Address.Size = new Size(311, 36);
             Change_Address.TabIndex = 14;
             Change_Address.Enter += PinfoTB_Selected;
             // 
@@ -710,10 +706,9 @@ namespace Examination_System
             // 
             Type_Title.AutoSize = true;
             Type_Title.Font = new Font("Century Gothic", 19F);
-            Type_Title.Location = new Point(1231, 838);
-            Type_Title.Margin = new Padding(4, 0, 4, 0);
+            Type_Title.Location = new Point(985, 670);
             Type_Title.Name = "Type_Title";
-            Type_Title.Size = new Size(281, 45);
+            Type_Title.Size = new Size(234, 39);
             Type_Title.TabIndex = 13;
             Type_Title.Text = "Account Type";
             // 
@@ -723,20 +718,19 @@ namespace Examination_System
             Change_Type.Enabled = false;
             Change_Type.Font = new Font("Century Gothic", 14F);
             Change_Type.ForeColor = SystemColors.Desktop;
-            Change_Type.Location = new Point(1239, 902);
-            Change_Type.Margin = new Padding(4, 5, 4, 5);
+            Change_Type.Location = new Point(991, 722);
+            Change_Type.Margin = new Padding(3, 4, 3, 4);
             Change_Type.Name = "Change_Type";
-            Change_Type.Size = new Size(388, 42);
+            Change_Type.Size = new Size(311, 36);
             Change_Type.TabIndex = 12;
             // 
             // Gender_Title
             // 
             Gender_Title.AutoSize = true;
             Gender_Title.Font = new Font("Century Gothic", 19F);
-            Gender_Title.Location = new Point(651, 838);
-            Gender_Title.Margin = new Padding(4, 0, 4, 0);
+            Gender_Title.Location = new Point(521, 670);
             Gender_Title.Name = "Gender_Title";
-            Gender_Title.Size = new Size(163, 45);
+            Gender_Title.Size = new Size(139, 39);
             Gender_Title.TabIndex = 11;
             Gender_Title.Text = "Gender";
             // 
@@ -746,20 +740,19 @@ namespace Examination_System
             Change_Gender.Enabled = false;
             Change_Gender.Font = new Font("Century Gothic", 14F);
             Change_Gender.ForeColor = SystemColors.Desktop;
-            Change_Gender.Location = new Point(654, 902);
-            Change_Gender.Margin = new Padding(4, 5, 4, 5);
+            Change_Gender.Location = new Point(523, 722);
+            Change_Gender.Margin = new Padding(3, 4, 3, 4);
             Change_Gender.Name = "Change_Gender";
-            Change_Gender.Size = new Size(388, 42);
+            Change_Gender.Size = new Size(311, 36);
             Change_Gender.TabIndex = 10;
             // 
             // DOB_Title
             // 
             DOB_Title.AutoSize = true;
             DOB_Title.Font = new Font("Century Gothic", 19F);
-            DOB_Title.Location = new Point(66, 838);
-            DOB_Title.Margin = new Padding(4, 0, 4, 0);
+            DOB_Title.Location = new Point(53, 670);
             DOB_Title.Name = "DOB_Title";
-            DOB_Title.Size = new Size(259, 45);
+            DOB_Title.Size = new Size(215, 39);
             DOB_Title.TabIndex = 9;
             DOB_Title.Text = "Date Of Birth";
             // 
@@ -768,10 +761,10 @@ namespace Examination_System
             Change_DOB.BackColor = SystemColors.Control;
             Change_DOB.Font = new Font("Century Gothic", 14F);
             Change_DOB.ForeColor = SystemColors.Desktop;
-            Change_DOB.Location = new Point(70, 902);
-            Change_DOB.Margin = new Padding(4, 5, 4, 5);
+            Change_DOB.Location = new Point(56, 722);
+            Change_DOB.Margin = new Padding(3, 4, 3, 4);
             Change_DOB.Name = "Change_DOB";
-            Change_DOB.Size = new Size(388, 42);
+            Change_DOB.Size = new Size(311, 36);
             Change_DOB.TabIndex = 8;
             Change_DOB.Enter += PinfoTB_Selected;
             // 
@@ -779,10 +772,9 @@ namespace Examination_System
             // 
             Email_Title.AutoSize = true;
             Email_Title.Font = new Font("Century Gothic", 19F);
-            Email_Title.Location = new Point(1231, 655);
-            Email_Title.Margin = new Padding(4, 0, 4, 0);
+            Email_Title.Location = new Point(985, 524);
             Email_Title.Name = "Email_Title";
-            Email_Title.Size = new Size(121, 45);
+            Email_Title.Size = new Size(99, 39);
             Email_Title.TabIndex = 7;
             Email_Title.Text = "Email";
             // 
@@ -792,20 +784,19 @@ namespace Examination_System
             Change_Email.Enabled = false;
             Change_Email.Font = new Font("Century Gothic", 14F);
             Change_Email.ForeColor = SystemColors.Desktop;
-            Change_Email.Location = new Point(1239, 718);
-            Change_Email.Margin = new Padding(4, 5, 4, 5);
+            Change_Email.Location = new Point(991, 574);
+            Change_Email.Margin = new Padding(3, 4, 3, 4);
             Change_Email.Name = "Change_Email";
-            Change_Email.Size = new Size(388, 42);
+            Change_Email.Size = new Size(311, 36);
             Change_Email.TabIndex = 6;
             // 
             // Name_Title
             // 
             Name_Title.AutoSize = true;
             Name_Title.Font = new Font("Century Gothic", 19F);
-            Name_Title.Location = new Point(651, 655);
-            Name_Title.Margin = new Padding(4, 0, 4, 0);
+            Name_Title.Location = new Point(521, 524);
             Name_Title.Name = "Name_Title";
-            Name_Title.Size = new Size(136, 45);
+            Name_Title.Size = new Size(114, 39);
             Name_Title.TabIndex = 5;
             Name_Title.Text = "Name";
             // 
@@ -814,10 +805,10 @@ namespace Examination_System
             Change_Name.BackColor = SystemColors.Control;
             Change_Name.Font = new Font("Century Gothic", 14F);
             Change_Name.ForeColor = SystemColors.Desktop;
-            Change_Name.Location = new Point(654, 718);
-            Change_Name.Margin = new Padding(4, 5, 4, 5);
+            Change_Name.Location = new Point(523, 574);
+            Change_Name.Margin = new Padding(3, 4, 3, 4);
             Change_Name.Name = "Change_Name";
-            Change_Name.Size = new Size(388, 42);
+            Change_Name.Size = new Size(311, 36);
             Change_Name.TabIndex = 4;
             Change_Name.Enter += PinfoTB_Selected;
             // 
@@ -825,20 +816,19 @@ namespace Examination_System
             // 
             ID_Title.AutoSize = true;
             ID_Title.Font = new Font("Century Gothic", 19F);
-            ID_Title.Location = new Point(66, 655);
-            ID_Title.Margin = new Padding(4, 0, 4, 0);
+            ID_Title.Location = new Point(53, 524);
             ID_Title.Name = "ID_Title";
-            ID_Title.Size = new Size(220, 45);
+            ID_Title.Size = new Size(184, 39);
             ID_Title.TabIndex = 3;
             ID_Title.Text = "ID Number";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(656, 33);
-            pictureBox1.Margin = new Padding(4, 5, 4, 5);
+            pictureBox1.Location = new Point(525, 26);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(473, 510);
+            pictureBox1.Size = new Size(378, 408);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -849,18 +839,18 @@ namespace Examination_System
             Change_ID.Enabled = false;
             Change_ID.Font = new Font("Century Gothic", 14F);
             Change_ID.ForeColor = SystemColors.Desktop;
-            Change_ID.Location = new Point(70, 718);
-            Change_ID.Margin = new Padding(4, 5, 4, 5);
+            Change_ID.Location = new Point(56, 574);
+            Change_ID.Margin = new Padding(3, 4, 3, 4);
             Change_ID.Name = "Change_ID";
-            Change_ID.Size = new Size(388, 42);
+            Change_ID.Size = new Size(311, 36);
             Change_ID.TabIndex = 1;
             // 
             // view_exams_panel
             // 
-            view_exams_panel.Location = new Point(357, 133);
-            view_exams_panel.Margin = new Padding(4, 5, 4, 5);
+            view_exams_panel.Location = new Point(286, 106);
+            view_exams_panel.Margin = new Padding(3, 4, 3, 4);
             view_exams_panel.Name = "view_exams_panel";
-            view_exams_panel.Size = new Size(1706, 1200);
+            view_exams_panel.Size = new Size(1365, 960);
             view_exams_panel.TabIndex = 18;
             // 
             // labelReports
@@ -891,23 +881,25 @@ namespace Examination_System
             // 
             // panel1
             // 
-            panel1.Location = new Point(361, 132);
+            panel1.Location = new Point(289, 106);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1644, 1202);
+            panel1.Size = new Size(1315, 962);
             panel1.TabIndex = 19;
             // 
             // reportPanel
             // 
-            reportPanel.Location = new Point(358, 119);
+            reportPanel.Location = new Point(286, 95);
+            reportPanel.Margin = new Padding(2);
             reportPanel.Name = "reportPanel";
-            reportPanel.Size = new Size(1702, 1215);
+            reportPanel.Size = new Size(1362, 972);
             reportPanel.TabIndex = 20;
             // 
             // InstructorForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2064, 1333);
+            ClientSize = new Size(1651, 1067);
             Controls.Add(RedFlag);
             Controls.Add(Personal_info_Panel);
             Controls.Add(HomePanel);
@@ -925,7 +917,7 @@ namespace Examination_System
             Controls.Add(reportPanel);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(6, 5, 6, 5);
+            Margin = new Padding(5, 4, 5, 4);
             Name = "InstructorForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
