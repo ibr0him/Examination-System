@@ -2,7 +2,7 @@
 using static DBConnect;
 using System.Diagnostics;
 using System.Net.Http.Headers;
-
+using System.Net;
 
 namespace Examination_System
 {
@@ -24,6 +24,7 @@ namespace Examination_System
             webView.Visible = false;
             RedBar.Visible = true;
             RedFlag.Visible = true;
+            webView.CoreWebView2.Profile.ClearBrowsingDataAsync();
             activePanel.Visible = true;
         }
         private void but_Close_Click(object sender, EventArgs e)
@@ -121,9 +122,9 @@ namespace Examination_System
       
 
         private string currentProcedure;
-
-
-        private void ShowReportPanel(string title, string procedureName, int paramCount, string[] paramNames)
+        string[] paramNames;
+        int reportNum;
+        private void ShowReportPanel(string title, string procedureName, int paramCount, string[] paramNameUI, string[]porParam,int num)
         {
             SetPanelVisibility(reportPanel);
             reportPanel.Controls.Clear();
@@ -142,6 +143,7 @@ namespace Examination_System
 
             currentProcedure = procedureName;
             parameterInputs = new TextBox[paramCount];
+            reportNum = num;
 
             int leftMargin = 100;
             int topMargin = 300; // Below title
@@ -149,9 +151,10 @@ namespace Examination_System
 
             for (int i = 0; i < paramCount; i++)
             {
+                paramNames = porParam;
                 Label paramLabel = new Label
                 {
-                    Text = paramNames[i],
+                    Text = paramNameUI[i],
                     Left = leftMargin,
                     Top = topMargin + (i * spacing),
                     AutoSize = true,
@@ -194,11 +197,31 @@ namespace Examination_System
             RedBar.Visible = true;
             RedFlag.Visible = false;
             webView.Visible = true;
-            getReport(parameterInputs[0].Text);
+            if (currentProcedure == "ReportStudentAnswer")
+            {
+                Debug.WriteLine(parameterInputs[1].Text);
+                 getReport(paramNames,  new string[] { parameterInputs[0].Text, parameterInputs[1].Text });
+            }
+            else
+            {
+                 getReport(paramNames,new string[] { parameterInputs[0].Text });
+            }
+
         }
-        private async void getReport(string track_id)
+        private async void getReport(string[]paramNames,string[]procuderParams)
         {
-            string reportUrl = $"http://yahya/ReportServer?/Report1&rs:Format=PDF&Track={track_id}";
+
+            string reportUrl;
+            if (currentProcedure == "ReportStudentAnswer")
+            {
+                Debug.WriteLine(procuderParams.Length);
+                 reportUrl = $"http://yahya/ReportServer?/Report{reportNum}&rs:Format=PDF&{paramNames[0]}={procuderParams[1]}&{paramNames[1]}={procuderParams[0]}";
+            }
+            else
+            {
+                reportUrl = $"http://yahya/ReportServer?/Report{reportNum}&rs:Format=PDF&{paramNames[0]}={procuderParams[0]}";
+
+            }
             string pdfPath = Path.Combine(Path.GetTempPath(), "Report.pdf");
 
             using (HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true })
@@ -234,12 +257,12 @@ namespace Examination_System
 
 
         // Event Handlers
-        private void GetStudentsPerTrack(object sender, EventArgs e) { ShowReportPanel("Get Students per Track", "ReportTrackStudents", 1, new[] { "Track ID" }); }
-        private void GetStudentGrade(object sender, EventArgs e) { ShowReportPanel("Get Student Grade", "ReportStudentsGrades", 1, new[] { "Student ID" }); }
-        private void GetInstructorCourses(object sender, EventArgs e) { ShowReportPanel("Get Instructor Courses", "ReportInstCourses", 1, new[] { "Instructor ID" }); }
-        private void GetTopicsPerTrack(object sender, EventArgs e) { ShowReportPanel("Get Topics Per Course", "GetTopicByCourseID", 1, new[] { "Course ID" }); }
-        private void GetExamQuestions(object sender, EventArgs e) { ShowReportPanel("Get Exam Questions", "ReportExamQuestions", 1, new[] { "Exam ID" }); }
-        private void GetStudentAnswers(object sender, EventArgs e) { ShowReportPanel("Get Student Answers", "ReportStudentAnswer", 2, new[] { "Student ID", "Exam ID" }); }
+        private void GetStudentsPerTrack(object sender, EventArgs e) { ShowReportPanel("Get Students per Track", "ReportTrackStudents", 1, new[] { "Track ID" }, new[] { "Track" },1); }
+        private void GetStudentGrade(object sender, EventArgs e) { ShowReportPanel("Get Student Grade", "ReportStudentsGrades", 1, new[] { "Student ID" }, new[] { "Student_Id" },2); }
+        private void GetInstructorCourses(object sender, EventArgs e) { ShowReportPanel("Get Instructor Courses", "ReportInstCourses", 1, new[] { "Instructor ID" }, new[] { "Inst_Id" },3); }
+        private void GetTopicsPerTrack(object sender, EventArgs e) { ShowReportPanel("Get Topics Per Course", "GetTopicByCourseID", 1, new[] { "Course ID" }, new[] { "CourseID" },4); }
+        private void GetExamQuestions(object sender, EventArgs e) { ShowReportPanel("Get Exam Questions", "ReportExamQuestions", 1, new[] { "Exam ID" }, new[] { "Exam_Id" },5); }
+        private void GetStudentAnswers(object sender, EventArgs e) { ShowReportPanel("Get Student Answers", "ReportStudentAnswer", 2, new[] { "Student ID", "Exam ID" }, new[] { "Exam_Id","Std_Id" },6); }
 
 
         /////////////////////////////////////////////////////////////////////
