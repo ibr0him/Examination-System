@@ -98,7 +98,7 @@ namespace Examination_System
                         Cursor = Cursors.Hand
                     };
 
-                    pictureBox.Click += (sender, e) => new PopUp($"Button {i + 1} clicked!").DoneMessage("");
+                    pictureBox.Click += (sender, e) => new PopUp($"Exam View").DoneMessage("");
 
                     Label label = new Label
                     {
