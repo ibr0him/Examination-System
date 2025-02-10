@@ -16,8 +16,8 @@ public static class DBConnect
 
     private static SqlConnection con;
 
-    //Replace this ConnectionString with Yours 
-    public static string connectionString = "Data Source=LAPTOP-26BRTGHE\\SQLEXPRESS;Initial Catalog=\"Examination System\";Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+    //Replace this ConnectionString with Yours
+    public static string connectionString = "Data Source=YAHYA\\SQLEXPRESS;Initial Catalog=Examination System;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
 
     public static async Task LoadReportAsync(string query, ReportViewer reportViewer)
